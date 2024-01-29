@@ -1,2 +1,2 @@
 ### PHY6860: Computational Physics 
-s
+Course Works for Computational Physics course at Wayne State University
