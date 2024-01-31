@@ -68,8 +68,10 @@ int main( )
 
   double a=0;
   double b=1;
-  double precision = 0.00001;
-
+  double precision = 0.00000001;
+  double numericalSolutionLower, numericalSolutionUpper;
+  double solnLower_before, solnLower_after;
+  
   const double analyticalSolution=1/3.;
 
   cout<<endl;
@@ -79,10 +81,10 @@ int main( )
   cout<<endl;
   cout<<" Analytical Solution = "<<analyticalSolution<<endl;
 
-  double numericalSolutionLower=lowerSum(pol2,a,b,stepsize);
+  numericalSolutionLower=lowerSum(pol2,a,b,stepsize);
   cout<<" Numerical Solution (lower sum) = "<<numericalSolutionLower<<endl;
 
-  double numericalSolutionUpper=upperSum(pol2,a,b,stepsize);
+  numericalSolutionUpper=upperSum(pol2,a,b,stepsize);
   cout<<" Numerical Solution (upper sum) = "<<numericalSolutionUpper<<endl;
 
   cout << "Now using lower sum and the given precison = " << precision << endl;
@@ -90,15 +92,18 @@ int main( )
   solnLower_before = lowerSum(pol2,a,b,stepsize);
   stepsize = stepsize + 100;
   solnLower_after = lowerSum(pol2,a,b,stepsize);
-  
+  int iteration = 0;
+   
   while(solnLower_after - solnLower_before > precision){
       stepsize = stepsize + 100;
+      iteration++;
       solnLower_before = solnLower_after;
       solnLower_after = lowerSum(pol2,a,b,stepsize);
   }
 
+  cout << "Total  Iteration = " << iteration << endl;
   cout << "Final Solution = " << solnLower_after << endl;
-  cout << "Total stepsize = " << stepsize;
+  cout << "Total stepsize = " << stepsize << endl;
   
 return 0;
 }
