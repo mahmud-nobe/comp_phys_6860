@@ -9,15 +9,23 @@ using namespace std;
 // declare global constants
 const double pi = M_PI;
 
-void swap(double n1, double n2){
+void swap(double &n1, double &n2){
 	double temp = n1;
 	n1 = n2;
 	n2 = temp;
 }
 
 void bubble_sort(int arr[], int arr_len){
-	for(int i=0; i<arr_len; i++){
-		arr[i] += 1;
+	// every iteration the largest number will move to the rightmost position,
+	// so the length of unsorted array reduced by 1
+	for (int j=arr_len; j>0; j--){
+		// check all the adjacent pairs upto the unsorted part
+		for(int i=1; i<j; i++){
+			// right adjacent should be larger, otherwise swap the pair
+			if (arr[i] < arr[i-1]){
+				swap(arr[i], arr[i-1]);
+			};
+		};
 	}
 }
 
