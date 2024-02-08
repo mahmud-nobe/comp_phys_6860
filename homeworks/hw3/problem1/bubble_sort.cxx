@@ -6,9 +6,8 @@
 
 using namespace std;
 
-// declare global constants
-const double pi = M_PI;
 
+// swap two numbers
 void swap(double &n1, double &n2){
 	double temp = n1;
 	n1 = n2;
@@ -46,6 +45,7 @@ int main(){
 	}
 	cout << endl;
 	
+	// sort the array using bubble sort
 	bubble_sort(arr, 20);
 	
 	
