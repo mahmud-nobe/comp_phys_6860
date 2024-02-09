@@ -6,14 +6,7 @@
 
 using namespace std;
 
-
-// swap two numbers
-void swap(double &n1, double &n2){
-	double temp = n1;
-	n1 = n2;
-	n2 = temp;
-}
-
+// finding mean of an array
 double mean_arr(int arr[], int arr_len){
 	double sum = 0;
 	for (int i = 0; i<arr_len; i++){
@@ -22,6 +15,7 @@ double mean_arr(int arr[], int arr_len){
 	return sum/(double) arr_len;
 };
 
+// finding standard deviation of an array
 double std_arr(int arr[], int arr_len){
 	double mean = mean_arr(arr, arr_len);
 	double sum_sq_err = 0;
@@ -29,6 +23,12 @@ double std_arr(int arr[], int arr_len){
 		sum_sq_err += (arr[i] - mean)*(arr[i] - mean);
 	};
 	return pow(sum_sq_err/(double) arr_len, 0.5);
+};
+
+// save the value of mean and standar deviation using call by reference
+void get_mean_std_arr(int arr[], int arr_len, double &mean, double &std){
+	mean = mean_arr(arr, arr_len);
+	std = std_arr(arr, arr_len);
 };
 
 int main(){
@@ -58,6 +58,11 @@ int main(){
 	// print the mean and std of the array
 	cout << "Mean: " << mean_arr(arr, arr_len) << endl;
 	cout << "Standard Deviation: " << std_arr(arr, arr_len) << endl;
+	
+	// print the mean and std of the array using call by reference
+	get_mean_std_arr(arr, arr_len, mean, std);
+	cout << "Mean: " << mean << endl;
+	cout << "Standard Deviation: " << std << endl;
 	
 	return 0;
 };
