@@ -55,10 +55,6 @@ int main(){
 	}
 	cout << endl;
 	
-	// print the mean and std of the array
-	cout << "Mean: " << mean_arr(arr, arr_len) << endl;
-	cout << "Standard Deviation: " << std_arr(arr, arr_len) << endl;
-	
 	// print the mean and std of the array using call by reference
 	get_mean_std_arr(arr, arr_len, mean, std);
 	cout << "Mean: " << mean << endl;
