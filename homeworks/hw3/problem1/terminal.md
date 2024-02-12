@@ -1,7 +1,7 @@
 ```console
 --- create the code file
-ubuntu@ubuntu2004:hw2$ touch bubble_sort.cxx
-ubuntu@ubuntu2004:hw2$ xdg-open bubble_sort.cxx
+ubuntu@ubuntu2004:problem1$ touch bubble_sort.cxx
+ubuntu@ubuntu2004:problem1$ xdg-open bubble_sort.cxx
 
 --- compile and linking the code file
 ubuntu@ubuntu2004:problem1$ g++ -o bubble_sort bubble_sort.cxx 
