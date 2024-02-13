@@ -3,6 +3,7 @@
 # include <iomanip>
 # include <cmath>
 # include <ctime>
+# include <bits/stdc++.h>
 
 using namespace std;
 
@@ -58,7 +59,6 @@ int main(){
 	annual_roi = 0.05;
 	
 	
-	
 	// Print the user inputs
 	cout << endl << "Retirement Calculator" << endl;
 	cout << "----------------------------------" << endl;
@@ -69,6 +69,39 @@ int main(){
 	cout << "Annual Saving Percentage: " << annual_saving*100 << "%" << endl;
 	cout << "Annual Return on Investment: " << annual_roi*100 << "%" << endl;
 	cout << "----------------------------------" << endl;
+	
+	
+	// declare variables for the table columns
+	int arr_len = retirement_age - current_age + 1;
+	vector<int> ages(arr_len);
+	vector<double> contributions(arr_len);
+	vector<double> prev_savings(arr_len);
+	vector<double> interests(arr_len);
+	vector<double> total(arr_len);
+	
+	// initially the contibution is the starting money 
+	// and previous saving is 0
+	ages[0] = current_age;
+	contributions[0] = starting_money;
+	prev_savings[0] = 0;
+	interests[0] = 0;
+	total[0] = starting_money;
+	
+	// iterate through the rest of the year
+	for (int i=1; i < arr_len; i++){
+		ages[i] = current_age + i;
+		contributions[i] = current_salary * annual_saving;
+		prev_savings[i] = total[i-1];
+		interests[i] = prev_savings[i] * annual_roi;
+		total[i] = contributions[i] + prev_savings[i] + interests[i];
+	};
+	
+	// print the annual savings table
+	cout << "Ages \t contribution \t prev_saving \t interest \t total" << endl;
+	for (int i=0; i < arr_len; i++){
+		cout << fixed << setprecision(2) << ages[i] << " \t " << contributions[i] << " \t \t " << prev_savings[i] << "\t\t" << interests[i] << " \t \t" << total[i] << endl;
+	};
+	cout << endl;
 	
 	
 	return 0;
