@@ -7,36 +7,6 @@
 
 using namespace std;
 
-// finding mean of an array
-double mean_arr(int arr[], int arr_len){
-	// get the summation of all values
-	double sum = 0;
-	for (int i = 0; i<arr_len; i++){
-		sum += arr[i];
-	};
-	// divide the sum by the number of values
-	return sum/(double) arr_len;
-};
-
-// finding standard deviation of an array
-double std_arr(int arr[], int arr_len){
-	double mean = mean_arr(arr, arr_len);
-	// get the sum of squared error
-	double sum_sq_err = 0;
-	for (int i = 0; i<arr_len; i++){
-		// squared difference between mean and the current value
-		sum_sq_err += (arr[i] - mean)*(arr[i] - mean);
-	};
-	// square root of the mean sum of squared error
-	return pow(sum_sq_err/(double) arr_len, 0.5);
-};
-
-// save the value of mean and standar deviation using call by reference
-void get_mean_std_arr(int arr[], int arr_len, double &mean, double &std){
-	mean = mean_arr(arr, arr_len);
-	std = std_arr(arr, arr_len);
-};
-
 int main(){
 	// declare variables
 	int current_age, retirement_age;
@@ -58,14 +28,16 @@ int main(){
 	
 	annual_roi = 0.05;
 	
+	// saved the terminal outputs to a text file
+	// freopen("output.txt", "w", stdout);
 	
 	// Print the user inputs
 	cout << endl << "Retirement Calculator" << endl;
 	cout << "----------------------------------" << endl;
 	cout << "Current Age: " << current_age << endl;
 	cout << "Retirement Age: " << retirement_age << endl;
-	cout << "Starting Money: US$" << starting_money << "k" << endl;
-	cout << "Retirement Age: US$" << retirement_age << "k" << endl;
+	cout << "Starting Money: US$ " << starting_money << "k" << endl;
+	cout << "Retirement Age: US$ " << retirement_age << "k" << endl;
 	cout << "Annual Saving Percentage: " << annual_saving*100 << "%" << endl;
 	cout << "Annual Return on Investment: " << annual_roi*100 << "%" << endl;
 	cout << "----------------------------------" << endl;
