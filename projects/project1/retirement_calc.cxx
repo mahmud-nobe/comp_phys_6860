@@ -97,7 +97,8 @@ int main(){
 	};
 	
 	// print the annual savings table
-	cout << "Ages \t contribution \t prev_saving \t interest \t total" << endl;
+	cout << "Age \t Contribution \t Prev_Saving \t Interest \t Total" << endl;
+	cout << "   \t (1000 US$) \t (1000 US$) \t (1000 US$) \t (1000 US$)" << endl;
 	for (int i=0; i < arr_len; i++){
 		cout << fixed << setprecision(2) << ages[i] << " \t " << contributions[i] << " \t \t " << prev_savings[i] << "\t\t" << interests[i] << " \t \t" << total[i] << endl;
 	};
