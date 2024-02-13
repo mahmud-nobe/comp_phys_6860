@@ -31,7 +31,7 @@
 ### Output
 | Age | Contribution | Previous Saving | Compound Interest (saving*0.05) | Total |
 | --- | --- | --- | --- | --- |
-| 55 | 30K | 0 | 0 | 40k |
+| 55 | 40K | 0 | 0 | 40k |
 | 56 | 20k | 40k | 2k | 62k |
 | 57 | 20k | 62k | 3.1k | 85.1k |
 | 58 | 20k | 85.1k | 4.3k | 109.4k |
