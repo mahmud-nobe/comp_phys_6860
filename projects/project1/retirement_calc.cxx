@@ -3,6 +3,7 @@
 # include <iomanip>
 # include <cmath>
 # include <ctime>
+# include <typeinfo>
 # include <bits/stdc++.h>
 
 using namespace std;
@@ -16,14 +17,30 @@ int main(){
 	// get the user inputs
 	cout << "What is your current age (round to a number): ";
 	cin >> current_age;
+	//cout << typeid(current_age).name() == int << endl;
+	while(current_age < 0){
+		cout << "Invalid Age! Age must be positive integer!" << endl;
+		cout << "What is your current age (round to a number): ";
+		cin >> current_age;
+	}
 	cout << "What is age you want to retire (round to a number): ";
 	cin >> retirement_age;
+	while(retirement_age < 0 | retirement_age < current_age){
+		cout << "Invalid Age! Age must be positive integer and greater than current age!" << endl;
+		cout << "What is age you want to retire (round to a number): ";
+		cin >> retirement_age;
+	}
 	cout << "What is your starting money (in thousand USD): ";
 	cin >> starting_money;
 	cout << "What is your current salary (in thousand USD): ";
 	cin >> current_salary;
 	cout << "How much percentage of current annual income you will save (1-100): ";
 	cin >> annual_saving;
+	while(annual_saving < 0 | annual_saving > 100){
+		cout << "Invalid Input! Must be a number betweet 1-100!" << endl;
+		cout << "How much percentage of current annual income you will save (1-100): ";
+		cin >> annual_saving;
+	}
 	annual_saving /= 100;
 	
 	annual_roi = 0.05;
