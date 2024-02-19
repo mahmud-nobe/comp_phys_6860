@@ -1,62 +1,141 @@
-// Implementation of our vec2d class
+// Implementation of our vecNd class
 // now we have to include our header
 // file !!!
 
-#include "vec2d.h"
+#include "vecNd.h"
 
 #include <iostream>  
 #include <cmath>
 
 using namespace std;
 
-vec2d vec2d::operator+(vec2d  &v)
+
+vecNd vecNd::operator=(vecNd &v)
 {
-  return vec2d(v.GetX()+GetX(),v.GetY()+GetY());
+  cout<<" vecNd: user defined = operator:"<<endl;
+  ndim=(int) v.GetDimension();
+  x = new double[ndim];
+
+  for (int i=0;i<(int) ndim;i++)
+    x[i]=v.GetComponent(i);
+
+  return *this;
 }
 
-vec2d vec2d::operator+=(vec2d &v)
+vecNd vecNd::operator = (vecNd *v)
 {
+  cout<<" vecNd: user defined = operator *:"<<endl;
+  ndim=(int) v->GetDimension();
+  x=new double[ndim];
+
+  for (int i=0;i<(int) ndim;i++)
+    x[i]=v->GetComponent(i);
+
+  return *this;
+}
+
+vecNd vecNd::operator += (vecNd &v)
+{
+	cout<<" vecNd: user defined += operator:"<<endl;
   //DEBUG:
   //cout<<x<<" "<<v.GetX()<<endl;
   //cout<<y<<" "<<v.GetY()<<endl;
   
-  x += v.GetX(); y +=v.GetY();
-
+  ndim = (int) v.GetDimension();
+  for (int i = 0; i<ndim; i++){
+  	x[i] += v.GetComponent(i);
+  }
+  
   //DEBUG:
   //cout<<"After Add : x = "<<x<<" "<<y<<endl;
 
   return *this;
 }
 
-vec2d::vec2d()
+vecNd vecNd::operator + (vecNd &v)
+{
+	cout<<" vecNd: user defined += operator:"<<endl;
+  //DEBUG:
+  //cout<<x<<" "<<v.GetX()<<endl;
+  //cout<<y<<" "<<v.GetY()<<endl;
+  
+  ndim = (int) v.GetDimension();
+  x_new = new double[ndim];
+  
+  for (int i = 0; i<ndim; i++){
+  	x_new[i] = x[i] + v.GetComponent(i);
+  }
+  
+  //DEBUG:
+  //cout<<"After Add : x = "<<x<<" "<<y<<endl;
+
+  return vecNd(&this); // need to figure out what to return
+}
+
+
+vecNd::vecNd()
 {
   //default constructor
   //DEBUG:
-  //cout<<" vec2d: default constructor called"<<endl;
-  x=0;y=0;
+  cout<<" vecNd: default constructor called"<<endl;
+  ndim=0;
+  // create an "array" so that we can use the
+  // generic delete in the destructor
+  x=new double[1];
 }
 
-vec2d::vec2d(double mx, double my)
+vecNd::vecNd(double mx, double my)
 {
-  //user defined constructor
-  //cout<<" vec2d: user defined constructor called"<<endl;
-  x=mx; y=my;
+  //user defined constructor for nd vector as a 2d vector
+  cout<<" vecNd: user defined 2d constructor called"<<endl;
+  ndim=2;
+  x=new double[2];
+  x[0]=mx; x[1]=my;
 }
 
-vec2d::~vec2d() 
+vecNd::vecNd(double mx, double my, double mz)
 {
-  //cout<<" vec2d: default destructor called"<<endl;
+  //user defined constructor for nd vector as a 2d vector
+  cout<<" vecNd: user defined 3d constructor called"<<endl;
+  ndim=3;
+  x=new double[3];
+  x[0]=mx; x[1]=my, x[2]=mz;
+}
+
+
+vecNd::vecNd(vecNd& v)
+{
+  cout<<" vecNd: user defined copy constructor called!"<<endl;
+  
+  ndim=(int) v.GetDimension();
+  x=new double[(int) v.GetDimension()];
+  
+  for (int i=0;i<(int) v.GetDimension();i++)
+    x[i]=v.GetComponent(i);
+}
+
+
+vecNd::~vecNd() 
+{
+  cout<<" vecNd: default destructor called"<<endl;
+  delete [] x;
 }; 
 
-void vec2d::Print()
+void vecNd::Print()
 {
-  cout<<"Vec2d Clas:"<<endl;
-  cout<<"x = "<<x<<endl;
-  cout<<"y = "<<y<<endl;
+  cout<<"VecNd Clas:"<<endl;
+  cout<<" dimension = "<<ndim<<endl;
+  for (int i=0;i<ndim;i++)    
+    cout<<"x["<<i<<"] = "<<x[i]<<endl;
 }
 
-double vec2d::Length()
+
+double vecNd::Length()
 {
-  return sqrt(x*x+y*y);
+	double square_sum = 0;
+	for (int i=0; i<ndim; i++){
+		square_sum += x[i]*x[i];
+	}
+  return sqrt(square_sum);
 }
 
