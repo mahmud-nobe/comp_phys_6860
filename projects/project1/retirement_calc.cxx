@@ -47,17 +47,19 @@ int main(){
 	
 	// saved the terminal outputs to a text file
 	// freopen("output.txt", "w", stdout);
+	ofstream outfile;
+ 	outfile.open ("output.txt");
 	
 	// Print the user inputs
-	cout << endl << "Retirement Calculator" << endl;
-	cout << "----------------------------------" << endl;
-	cout << "Current Age: " << current_age << endl;
-	cout << "Retirement Age: " << retirement_age << endl;
-	cout << "Starting Money: US$ " << starting_money << "k" << endl;
-	cout << "Retirement Age: US$ " << retirement_age << "k" << endl;
-	cout << "Annual Saving Percentage: " << annual_saving*100 << "%" << endl;
-	cout << "Annual Return on Investment: " << annual_roi*100 << "%" << endl;
-	cout << "----------------------------------" << endl;
+	outfile << endl << "Retirement Calculator" << endl;
+	outfile << "----------------------------------" << endl;
+	outfile << "Current Age: " << current_age << endl;
+	outfile << "Retirement Age: " << retirement_age << endl;
+	outfile << "Starting Money: US$ " << starting_money << "k" << endl;
+	outfile << "Retirement Age: US$ " << retirement_age << "k" << endl;
+	outfile << "Annual Saving Percentage: " << annual_saving*100 << "%" << endl;
+	outfile << "Annual Return on Investment: " << annual_roi*100 << "%" << endl;
+	outfile << "----------------------------------" << endl;
 	
 	
 	// declare variables for the table columns
@@ -86,12 +88,22 @@ int main(){
 	};
 	
 	// print the annual savings table
-	cout << "Age \t Contribution \t Prev_Saving \t Interest \t Total" << endl;
-	cout << "   \t (1000 US$) \t (1000 US$) \t (1000 US$) \t (1000 US$)" << endl;
+	outfile << "Age \t Contribution \t Prev_Saving \t Interest \t Total" << endl;
+	outfile << "   \t (1000 US$) \t (1000 US$) \t (1000 US$) \t (1000 US$)" << endl;
 	for (int i=0; i < arr_len; i++){
-		cout << fixed << setprecision(2) << ages[i] << " \t " << contributions[i] << " \t \t " << prev_savings[i] << "\t\t" << interests[i] << " \t \t" << total[i] << endl;
+		outfile << fixed << setprecision(2) << ages[i] << " \t " << contributions[i] << " \t \t " << prev_savings[i] << "\t\t" << interests[i] << " \t \t" << total[i] << endl;
 	};
-	cout << endl;
+	
+	outfile.close();
+	
+	string line;
+	ifstream input_file("output.txt");
+	if (input_file.is_open()){
+		while (getline(input_file, line)){
+			cout << line << endl;
+		}
+		input_file.close();
+	}
 	
 	
 	return 0;
