@@ -12,10 +12,7 @@ class complex
 	// constructor
 	complex(); // default
 	// constructor using real and imaginary part
-	complex(double real_n, double imag_n){
-		real = real_n; 
-		imaginary = imag_n;
-	};
+	complex(double real_n, double imag_n);
 	
 	// destructor
 	~complex();
