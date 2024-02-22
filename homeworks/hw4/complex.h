@@ -28,6 +28,12 @@ class complex
 	// operators
 	complex operator + (complex &);
 	complex operator += (complex &);
+	complex operator - (complex &);
+	complex operator -= (complex &);
+	complex operator * (complex &);
+	complex operator *= (complex &);
+	complex operator / (complex &);
+	complex operator /= (complex &);
 	
 	// member function
 	void Print();

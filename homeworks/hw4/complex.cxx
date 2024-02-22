@@ -49,3 +49,33 @@ complex complex::operator+=(complex &c){
 complex complex::operator+(complex &c){
 	return complex(real+c.real, imaginary+c.imaginary);
 };
+
+// operator: subtruction in place 
+complex complex::operator-=(complex &c){
+	real -= c.real;
+	imaginary -= c.imaginary;
+	
+	return *this;
+};
+
+// operator: subtraction
+complex complex::operator-(complex &c){
+	return complex(real-c.real, imaginary-c.imaginary);
+};
+
+// operator: multiplication in place 
+complex complex::operator*=(complex &c){
+	real_part = real*c.real - imaginary*c.imaginary // ac-bd
+	imag_part = real*c.imaginary + imaginary*c.real  // ad+bc
+	
+	real = real_part; imaginary = imag_part;
+	return *this;
+};
+
+// operator: multiplication
+complex complex::operator*(complex &c){
+	real_part = real*c.real - imaginary*c.imaginary // ac-bd
+	imag_part = real*c.imaginary + imaginary*c.real  // ad+bc
+	return complex(real_part, imag_part);
+};
+
