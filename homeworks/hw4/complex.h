@@ -25,6 +25,10 @@ class complex
 	double getReal(){return real;};
 	double getImaginary(){return imaginary;};
 	
+	// operators
+	complex operator + (complex &);
+	complex operator += (complex &);
+	
 	// member function
 	void Print();
 	double abs_value();

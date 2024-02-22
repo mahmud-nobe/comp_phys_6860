@@ -36,3 +36,16 @@ complex::complex(double real_n, double imag_n){
 complex::~complex(){
 	cout << "Destructor is Called!" << endl;
 }
+
+// operator: addition in place 
+complex complex::operator+=(complex &c){
+	real += c.real;
+	imaginary += c.imaginary;
+	
+	return *this;
+};
+
+// operator: addition
+complex complex::operator+(complex &c){
+	return complex(real+c.real, imaginary+c.imaginary);
+};
