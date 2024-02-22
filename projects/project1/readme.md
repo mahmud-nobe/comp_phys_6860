@@ -21,7 +21,7 @@
 ## Example:
 
 ### Inputs:
-- int: Current Age: 58
+- int: Current Age: 55
 - int: Retirement Age: 60
 - double: Starting Money: 40k
 - double: Current Salary: 100k
