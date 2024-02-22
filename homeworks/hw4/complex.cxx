@@ -11,7 +11,7 @@ using namespace std;
 void complex::Print(){
 	cout << "Real Part: " << real << endl;
 	cout << "Imaginary Part: " << imaginary << endl;
-	cout << "Complex Number: " << real << " + i " << imaginary << endl;
+	cout << "Complex Number: " << real << " + " << imaginary << "i " << endl;
 };
 
 double complex::abs_value(){
@@ -34,7 +34,8 @@ complex::complex(double real_n, double imag_n){
 
 // destructor
 complex::~complex(){
-	cout << "Destructor is Called!" << endl;
+	// dummy function
+	// cout << "Destructor is Called!" << endl;
 }
 
 // operator: addition in place 
@@ -65,8 +66,9 @@ complex complex::operator-(complex &c){
 
 // operator: multiplication in place 
 complex complex::operator*=(complex &c){
-	real_part = real*c.real - imaginary*c.imaginary // ac-bd
-	imag_part = real*c.imaginary + imaginary*c.real  // ad+bc
+	double real_part, imag_part; 
+	real_part = real*c.real - imaginary*c.imaginary; // ac-bd
+	imag_part = real*c.imaginary + imaginary*c.real;  // ad+bc
 	
 	real = real_part; imaginary = imag_part;
 	return *this;
@@ -74,18 +76,20 @@ complex complex::operator*=(complex &c){
 
 // operator: multiplication
 complex complex::operator*(complex &c){
-	real_part = real*c.real - imaginary*c.imaginary // ac-bd
-	imag_part = real*c.imaginary + imaginary*c.real  // ad+bc
+	double real_part, imag_part; 
+	real_part = real*c.real - imaginary*c.imaginary; // ac-bd
+	imag_part = real*c.imaginary + imaginary*c.real; // ad+bc
 	return complex(real_part, imag_part);
 };
 
 
 // operator: division in place 
 complex complex::operator/=(complex &c){
+	double real_part, imag_part; 
 	// ac+bd / abs(c+di)^2
-	real_part = (real*c.real + imaginary*c.imaginary) / (c.abs_value()*c.abs_value()) 
+	real_part = (real*c.real + imaginary*c.imaginary) / (c.abs_value()*c.abs_value()); 
 	// bc-ad / abs(c+di)^2
-	imag_part = (imaginary*c.real - real*c.imaginary) / (c.abs_value()*c.abs_value()) 
+	imag_part = (imaginary*c.real - real*c.imaginary) / (c.abs_value()*c.abs_value());
 	
 	real = real_part; imaginary = imag_part;
 	return *this;
@@ -93,10 +97,11 @@ complex complex::operator/=(complex &c){
 
 // operator: division
 complex complex::operator/(complex &c){
+	double real_part, imag_part; 
 	// ac+bd / abs(c+di)^2
-	real_part = (real*c.real + imaginary*c.imaginary) / (c.abs_value()*c.abs_value()) 
+	real_part = (real*c.real + imaginary*c.imaginary) / (c.abs_value()*c.abs_value()); 
 	// bc-ad / abs(c+di)^2
-	imag_part = (imaginary*c.real - real*c.imaginary) / (c.abs_value()*c.abs_value()) 
+	imag_part = (imaginary*c.real - real*c.imaginary) / (c.abs_value()*c.abs_value());
 	return complex(real_part, imag_part);
 };
 
