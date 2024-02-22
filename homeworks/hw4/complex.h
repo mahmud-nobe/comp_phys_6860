@@ -1,3 +1,4 @@
+// Complex class definition
 // header file for complex class
 
 class complex
