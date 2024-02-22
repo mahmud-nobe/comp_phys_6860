@@ -79,3 +79,24 @@ complex complex::operator*(complex &c){
 	return complex(real_part, imag_part);
 };
 
+
+// operator: division in place 
+complex complex::operator/=(complex &c){
+	// ac+bd / abs(c+di)^2
+	real_part = (real*c.real + imaginary*c.imaginary) / (c.abs_value()*c.abs_value()) 
+	// bc-ad / abs(c+di)^2
+	imag_part = (imaginary*c.real - real*c.imaginary) / (c.abs_value()*c.abs_value()) 
+	
+	real = real_part; imaginary = imag_part;
+	return *this;
+};
+
+// operator: division
+complex complex::operator/(complex &c){
+	// ac+bd / abs(c+di)^2
+	real_part = (real*c.real + imaginary*c.imaginary) / (c.abs_value()*c.abs_value()) 
+	// bc-ad / abs(c+di)^2
+	imag_part = (imaginary*c.real - real*c.imaginary) / (c.abs_value()*c.abs_value()) 
+	return complex(real_part, imag_part);
+};
+
