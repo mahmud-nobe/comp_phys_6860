@@ -7,8 +7,8 @@ class vecNd
 {
   private:
 
-	int ndim; // number of dimension
-  double x*; // array 
+  int ndim; // number of dimension
+  double *x; // array 
 
   public:
 
@@ -18,7 +18,7 @@ class vecNd
   vecNd(double mx, double my, double mz); //3d constructor
   
   // copy constructor for pointer
-  vecNd(vecNd& v)
+  vecNd(vecNd& v);
 
   // destructor
   ~vecNd();

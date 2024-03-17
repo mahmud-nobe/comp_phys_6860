@@ -43,10 +43,15 @@ int main(){
 	}
 	annual_saving /= 100;
 	
-	annual_roi = 0.05;
+	cout << "Optional: Press Enter to skip." << endl;
+	cout << "What is the annual Return on Investment (ROI) percentage (1-100): ";
+	if (!cin){
+		annual_roi = 0.05;
+	}
+	else {cin >> annual_roi;};
+	
 	
 	// saved the terminal outputs to a text file
-	// freopen("output.txt", "w", stdout);
 	ofstream outfile;
  	outfile.open ("output.txt");
 	

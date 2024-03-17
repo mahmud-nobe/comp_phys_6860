@@ -1,21 +1,18 @@
 
 Retirement Calculator
 ----------------------------------
-Current Age: 50
-Retirement Age: 58
+Current Age: 55
+Retirement Age: 60
 Starting Money: US$ 40k
-Retirement Age: US$ 58k
+Retirement Age: US$ 60k
 Annual Saving Percentage: 15%
-Annual Return on Investment: 5%
+Annual Return on Investment: 0%
 ----------------------------------
 Age 	 Contribution 	 Prev_Saving 	 Interest 	 Total
    	 (1000 US$) 	 (1000 US$) 	 (1000 US$) 	 (1000 US$)
-50 	 40.00 	 	 0.00		0.00 	 	40.00
-51 	 15.00 	 	 40.00		2.00 	 	57.00
-52 	 15.00 	 	 57.00		2.85 	 	74.85
-53 	 15.00 	 	 74.85		3.74 	 	93.59
-54 	 15.00 	 	 93.59		4.68 	 	113.27
-55 	 15.00 	 	 113.27		5.66 	 	133.94
-56 	 15.00 	 	 133.94		6.70 	 	155.63
-57 	 15.00 	 	 155.63		7.78 	 	178.41
-58 	 15.00 	 	 178.41		8.92 	 	202.33
+55 	 40.00 	 	 0.00		0.00 	 	40.00
+56 	 15.00 	 	 40.00		0.00 	 	55.00
+57 	 15.00 	 	 55.00		0.00 	 	70.00
+58 	 15.00 	 	 70.00		0.00 	 	85.00
+59 	 15.00 	 	 85.00		0.00 	 	100.00
+60 	 15.00 	 	 100.00		0.00 	 	115.00

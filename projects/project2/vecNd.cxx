@@ -60,16 +60,16 @@ vecNd vecNd::operator + (vecNd &v)
   //cout<<y<<" "<<v.GetY()<<endl;
   
   ndim = (int) v.GetDimension();
-  x_new = new double[ndim];
+  vecNd x_new(ndim);  
   
   for (int i = 0; i<ndim; i++){
-  	x_new[i] = x[i] + v.GetComponent(i);
+  	x_new.SetComponent(i, x[i] + v.GetComponent(i) );
   }
   
   //DEBUG:
   //cout<<"After Add : x = "<<x<<" "<<y<<endl;
 
-  return vecNd(&this); // need to figure out what to return
+  return x_new; // need to figure out what to return
 }
 
 
