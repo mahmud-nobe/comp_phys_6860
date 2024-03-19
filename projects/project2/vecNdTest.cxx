@@ -13,9 +13,24 @@ using namespace std;
 int main( )
 { 
   // initialize new vector using 3d
-  vecNd vec3d_1(1,2,3);
-  cout << "Example 3D vector:" << endl;
-  vec3d_1.Print();
-  cout << "Magnitude: " << vec3d_1.Length() << endl; 
+  vecNd vec1(1,2,3);
+  cout << "Example 3D vector 1:" << endl;
+  vec1.Print();
+  cout << "Magnitude: " << vec1.Length() << endl; 
+  
+  vecNd vec2(4,5,6);
+  cout << "Example 3D vector 2:" << endl;
+  vec2.Print();
+  cout << "Magnitude: " << vec2.Length() << endl;
+  
+  cout << "Addition in Place: v1 += v2" << endl;
+  vec1 += vec2;
+  cout << "Vector 1:" << endl;
+  vec1.Print();
+  
+  cout << "Addition: v3 = v1 + v2" << endl;
+  vecNd vec3 = vec1 + vec2;
+  cout << "Vector 3:" << endl;
+  vec3.Print();
   
 }

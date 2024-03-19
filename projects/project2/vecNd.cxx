@@ -8,72 +8,30 @@
 
 using namespace std;
 
-vecNd vecNd::operator=(vecNd &v)
+// member function Print
+void vecNd::Print()
 {
-  cout<<" vecNd: user defined = operator:"<<endl;
-  ndim=(int) v.GetDimension();
-  x = new double[ndim];
-
-  for (int i=0;i<(int) ndim;i++)
-    x[i]=v.GetComponent(i);
-
-  return *this;
+  cout<<"VecNd Clas:"<<endl;
+  cout<<" dimension = "<<ndim<<endl;
+  for (int i=0;i<ndim;i++)    
+    cout<<"x["<<i<<"] = "<<x[i]<<endl;
 }
 
-vecNd vecNd::operator = (vecNd *v)
+// member function to get the magnitude
+double vecNd::Length()
 {
-  cout<<" vecNd: user defined = operator *:"<<endl;
-  ndim=(int) v->GetDimension();
-  x=new double[ndim];
-
-  for (int i=0;i<(int) ndim;i++)
-    x[i]=v->GetComponent(i);
-
-  return *this;
+	double square_sum = 0;
+	for (int i=0; i<ndim; i++){
+		square_sum += x[i]*x[i];
+	}
+  return sqrt(square_sum);
 }
 
-vecNd vecNd::operator += (vecNd &v)
-{
-	cout<<" vecNd: user defined += operator:"<<endl;
-  //DEBUG:
-  //cout<<x<<" "<<v.GetX()<<endl;
-  //cout<<y<<" "<<v.GetY()<<endl;
-  
-  ndim = (int) v.GetDimension();
-  for (int i = 0; i<ndim; i++){
-  	x[i] += v.GetComponent(i);
-  }
-  
-  //DEBUG:
-  //cout<<"After Add : x = "<<x<<" "<<y<<endl;
+// Constructors //
 
-  return *this;
-}
-
-vecNd vecNd::operator + (vecNd &v)
-{
-	cout<<" vecNd: user defined += operator:"<<endl;
-  //DEBUG:
-  //cout<<x<<" "<<v.GetX()<<endl;
-  //cout<<y<<" "<<v.GetY()<<endl;
-  
-  vecNd v_new(v);
-  
-  for (int i = 0; i<ndim; i++){
-  	v_new.SetComponent(i, x[i] + v.GetComponent(i) );
-  }
-  
-  //DEBUG:
-  //cout<<"After Add : x = "<<x<<" "<<y<<endl;
-
-  return v_new; // need to figure out what to return
-}
-
-
+// default constructor
 vecNd::vecNd()
 {
-  //default constructor
-  //DEBUG:
   cout<<" vecNd: default constructor called"<<endl;
   ndim=0;
   // create an "array" so that we can use the
@@ -81,18 +39,18 @@ vecNd::vecNd()
   x=new double[1];
 }
 
+// constructor for nd vector as a 2d vector
 vecNd::vecNd(double mx, double my)
 {
-  //user defined constructor for nd vector as a 2d vector
   cout<<" vecNd: user defined 2d constructor called"<<endl;
   ndim=2;
   x=new double[2];
   x[0]=mx; x[1]=my;
 }
 
+// constructor for nd vector as a 3d vector
 vecNd::vecNd(double mx, double my, double mz)
 {
-  //user defined constructor for nd vector as a 3d vector
   cout<<" vecNd: user defined 3d constructor called"<<endl;
   ndim=3;
   x=new double[3];
@@ -118,22 +76,73 @@ vecNd::~vecNd()
   delete [] x;
 }; 
 
-// member function Print
-void vecNd::Print()
+
+// operators //
+
+// Equal operator for for reference
+vecNd vecNd::operator=(vecNd &v)
 {
-  cout<<"VecNd Clas:"<<endl;
-  cout<<" dimension = "<<ndim<<endl;
-  for (int i=0;i<ndim;i++)    
-    cout<<"x["<<i<<"] = "<<x[i]<<endl;
+  cout<<" vecNd: user defined = operator:"<<endl;
+  ndim=(int) v.GetDimension();
+  x = new double[ndim];
+
+  for (int i=0;i<(int) ndim;i++)
+    x[i]=v.GetComponent(i);
+
+  return *this;
 }
 
-// member function to get the magnitude
-double vecNd::Length()
+// Equal operator for for pointer
+vecNd vecNd::operator = (vecNd *v)
 {
-	double square_sum = 0;
-	for (int i=0; i<ndim; i++){
-		square_sum += x[i]*x[i];
-	}
-  return sqrt(square_sum);
+  cout<<" vecNd: user defined = operator *:"<<endl;
+  ndim=(int) v->GetDimension();
+  x=new double[ndim];
+
+  for (int i=0;i<(int) ndim;i++)
+    x[i]=v->GetComponent(i);
+
+  return *this;
 }
+
+// operator: addition in place
+vecNd vecNd::operator += (vecNd &v)
+{
+	cout<<" vecNd: user defined += operator:"<<endl;
+  //DEBUG:
+  //cout<<x<<" "<<v.GetX()<<endl;
+  //cout<<y<<" "<<v.GetY()<<endl;
+  
+  ndim = (int) v.GetDimension();
+  for (int i = 0; i<ndim; i++){
+  	x[i] += v.GetComponent(i);
+  }
+  
+  //DEBUG:
+  //cout<<"After Add : x = "<<x<<" "<<y<<endl;
+
+  return *this;
+}
+
+// operator: addition 
+vecNd vecNd::operator + (vecNd &v)
+{
+	cout<<" vecNd: user defined += operator:"<<endl;
+  //DEBUG:
+  //cout<<x<<" "<<v.GetX()<<endl;
+  //cout<<y<<" "<<v.GetY()<<endl;
+  
+  vecNd v_new(v);
+  
+  for (int i = 0; i<ndim; i++){
+  	v_new.SetComponent(i, x[i] + v.GetComponent(i) );
+  }
+  
+  //DEBUG:
+  //cout<<"After Add : x = "<<x<<" "<<y<<endl;
+
+  return v_new; // need to figure out what to return
+}
+
+
 
