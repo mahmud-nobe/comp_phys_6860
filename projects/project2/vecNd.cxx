@@ -27,6 +27,16 @@ double vecNd::Length()
   return sqrt(square_sum);
 }
 
+// member function scaler product
+double vecNd::scaler_prod(vecNd &v)
+{
+  double prod = 0;
+	for (int i=0; i<ndim; i++){
+		prod += x[i] * v.GetComponent(i);
+	}
+  return prod;
+}
+
 // Constructors //
 
 // default constructor
@@ -120,6 +130,30 @@ vecNd vecNd::operator += (vecNd &v)
 
 // operator: addition 
 vecNd vecNd::operator + (vecNd &v)
+{
+	cout<<" vecNd: user defined + operator:"<<endl;
+  vecNd v_new(v);
+  for (int i = 0; i<ndim; i++){
+  	v_new.SetComponent(i, x[i] + v.GetComponent(i) );
+  }
+ 
+  return v_new;
+}
+
+// operator: scaler product 
+vecNd vecNd::operator *= (vecNd &v)
+{
+  cout<<" vecNd: user defined scaler product operator:"<<endl;
+  double prod = 0;
+  for (int i = 0; i<ndim; i++){
+  	prod += x[i] * v.GetComponent(i);
+  }
+
+  return *this;
+}
+
+// operator: scaler product 
+vecNd vecNd::operator * (vecNd &v)
 {
 	cout<<" vecNd: user defined + operator:"<<endl;
   
