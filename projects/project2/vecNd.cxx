@@ -12,9 +12,9 @@ using namespace std;
 void vecNd::Print()
 {
   cout<<"VecNd Clas:"<<endl;
-  cout<<" dimension = "<<ndim<<endl;
+  cout<<" Dimension = "<<ndim<<endl;
   for (int i=0;i<ndim;i++)    
-    cout<<"x["<<i<<"] = "<<x[i]<<endl;
+    cout<<" x["<<i<<"] = "<<x[i]<<endl;
 }
 
 // member function to get the magnitude
@@ -108,18 +108,12 @@ vecNd vecNd::operator = (vecNd *v)
 // operator: addition in place
 vecNd vecNd::operator += (vecNd &v)
 {
-	cout<<" vecNd: user defined += operator:"<<endl;
-  //DEBUG:
-  //cout<<x<<" "<<v.GetX()<<endl;
-  //cout<<y<<" "<<v.GetY()<<endl;
+  cout<<" vecNd: user defined += operator:"<<endl;
   
   ndim = (int) v.GetDimension();
   for (int i = 0; i<ndim; i++){
   	x[i] += v.GetComponent(i);
   }
-  
-  //DEBUG:
-  //cout<<"After Add : x = "<<x<<" "<<y<<endl;
 
   return *this;
 }
@@ -127,21 +121,15 @@ vecNd vecNd::operator += (vecNd &v)
 // operator: addition 
 vecNd vecNd::operator + (vecNd &v)
 {
-	cout<<" vecNd: user defined += operator:"<<endl;
-  //DEBUG:
-  //cout<<x<<" "<<v.GetX()<<endl;
-  //cout<<y<<" "<<v.GetY()<<endl;
+	cout<<" vecNd: user defined + operator:"<<endl;
   
   vecNd v_new(v);
   
   for (int i = 0; i<ndim; i++){
   	v_new.SetComponent(i, x[i] + v.GetComponent(i) );
   }
-  
-  //DEBUG:
-  //cout<<"After Add : x = "<<x<<" "<<y<<endl;
-
-  return v_new; // need to figure out what to return
+ 
+  return v_new;
 }
 
 
