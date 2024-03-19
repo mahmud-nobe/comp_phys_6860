@@ -1,6 +1,5 @@
-// Implementation of our vecNd class
-// now we have to include our header
-// file !!!
+// vecNd Class Implementation
+// Implementation of member function
 
 #include "vecNd.h"
 
@@ -8,7 +7,6 @@
 #include <cmath>
 
 using namespace std;
-
 
 vecNd vecNd::operator=(vecNd &v)
 {
@@ -59,17 +57,16 @@ vecNd vecNd::operator + (vecNd &v)
   //cout<<x<<" "<<v.GetX()<<endl;
   //cout<<y<<" "<<v.GetY()<<endl;
   
-  ndim = (int) v.GetDimension();
-  vecNd x_new(ndim);  
+  vecNd v_new(&v);
   
   for (int i = 0; i<ndim; i++){
-  	x_new.SetComponent(i, x[i] + v.GetComponent(i) );
+  	v_new.SetComponent(i, x[i] + v.GetComponent(i) );
   }
   
   //DEBUG:
   //cout<<"After Add : x = "<<x<<" "<<y<<endl;
 
-  return x_new; // need to figure out what to return
+  return v_new; // need to figure out what to return
 }
 
 
@@ -95,32 +92,33 @@ vecNd::vecNd(double mx, double my)
 
 vecNd::vecNd(double mx, double my, double mz)
 {
-  //user defined constructor for nd vector as a 2d vector
+  //user defined constructor for nd vector as a 3d vector
   cout<<" vecNd: user defined 3d constructor called"<<endl;
   ndim=3;
   x=new double[3];
   x[0]=mx; x[1]=my, x[2]=mz;
 }
 
-
-vecNd::vecNd(vecNd& v)
+// copy constructor for pointer
+vecNd::vecNd(vecNd &v)
 {
   cout<<" vecNd: user defined copy constructor called!"<<endl;
   
   ndim=(int) v.GetDimension();
-  x=new double[(int) v.GetDimension()];
+  x=new double[ndim];
   
-  for (int i=0;i<(int) v.GetDimension();i++)
+  for (int i=0;i<ndim;i++)
     x[i]=v.GetComponent(i);
 }
 
-
+// destructor
 vecNd::~vecNd() 
 {
   cout<<" vecNd: default destructor called"<<endl;
   delete [] x;
 }; 
 
+// member function Print
 void vecNd::Print()
 {
   cout<<"VecNd Clas:"<<endl;
@@ -129,7 +127,7 @@ void vecNd::Print()
     cout<<"x["<<i<<"] = "<<x[i]<<endl;
 }
 
-
+// member function to get the magnitude
 double vecNd::Length()
 {
 	double square_sum = 0;

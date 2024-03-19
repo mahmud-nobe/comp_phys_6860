@@ -1,8 +1,6 @@
-// This is the header file
-// of our vecNd class
+// vecNd class definition
+// header file for vecNd class
 
-
-//definition of our vec2d class
 class vecNd
 {
   private:
@@ -30,8 +28,8 @@ class vecNd
   vecNd operator += (vecNd &); // scaler addition (in place)
   vecNd operator + (vecNd &);  // scaler addition
   
-  vecNd operator *= (vecNd &); // scaler product (in place)
-  vecNd operator * (vecNd &);  // scaler product
+  //vecNd operator *= (vecNd &); // scaler product (in place)
+  //vecNd operator * (vecNd &);  // scaler product
 
   // Setter functions
   void SetN(int n) {ndim=n;}
