@@ -31,4 +31,9 @@ int main( )
   cout << "Scaler Product: v1 * v2" << endl;
   cout << vec1.scaler_prod(vec2) << endl;
   
+  cout << "Vector Product: v3 = v1 x v2" << endl;
+  vecNd vec3 = vec1 * vec2;
+  cout << "Vector 3:" << endl;
+  vec3.Print();
+  
 }

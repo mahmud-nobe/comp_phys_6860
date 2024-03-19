@@ -140,30 +140,26 @@ vecNd vecNd::operator + (vecNd &v)
   return v_new;
 }
 
-// operator: scaler product 
-vecNd vecNd::operator *= (vecNd &v)
-{
-  cout<<" vecNd: user defined scaler product operator:"<<endl;
-  double prod = 0;
-  for (int i = 0; i<ndim; i++){
-  	prod += x[i] * v.GetComponent(i);
-  }
 
-  return *this;
-}
-
-// operator: scaler product 
+// operator: vector product 
 vecNd vecNd::operator * (vecNd &v)
 {
-	cout<<" vecNd: user defined + operator:"<<endl;
+	if (ndim != (int) v.GetDimension()){
+		cout << "The dimensions are not equal!" << endl;
+	}
+	else if (ndim == 3){
+		// vector product for 3D:
+		vecNd v_new(v);
+		
+		v_new.SetComponent(0, x[1]*v.GetComponent(2) - x[2]*v.GetComponent(1) );
+		v_new.SetComponent(1, x[2]*v.GetComponent(0) - x[0]*v.GetComponent(2) );
+		v_new.SetComponent(2, x[0]*v.GetComponent(1) - x[1]*v.GetComponent(0) );
+		
+		return v_new;
+	};
+	
+	return vecNd();
   
-  vecNd v_new(v);
-  
-  for (int i = 0; i<ndim; i++){
-  	v_new.SetComponent(i, x[i] + v.GetComponent(i) );
-  }
- 
-  return v_new;
 }
 
 

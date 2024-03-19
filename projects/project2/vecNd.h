@@ -28,8 +28,7 @@ class vecNd
   vecNd operator += (vecNd &v); // scaler addition (in place)
   vecNd operator + (vecNd &v);  // scaler addition
   
-  vecNd operator *= (vecNd &v); // scaler product (in place)
-  vecNd operator * (vecNd &v);  // scaler product
+  vecNd operator * (vecNd &v);  // vector product
 
   // Setter functions
   void SetN(int n) {ndim=n;}
