@@ -12,32 +12,10 @@ using namespace std;
 
 int main( )
 { 
-  // declare dynamically and 
-  //set a new variable of type vec2d
-  vecNd myFirstVecNd(2.0,1.0);
-
-  cout<<endl;
-  cout<<"First Vector:"<<endl;
-  myFirstVecNd.Print();
-  cout<<endl;
+  // initialize new vector using 3d
+  vecNd vec3d_1(1,2,3);
+  cout << "Example 3D vector:" << endl;
+  vec3d_1.Print();
+  cout << "Magnitude: " << vec3d_1.Length() << endl; 
   
-  // (i) vecNd *mySecondVecNd=(vecNd*) myFirstVecNd;
-  // (ii) the same but with a new ...
-  ////vecNd *mySecondVecNd=new vecNd();
-  // (ii) *mySecondVecNd=*myFirstVecNd; or mySecondVecNd=myFirstVecNd;
-  ////*mySecondVecNd=*myFirstVecNd;
-  vecNd mySecondVecNd= myFirstVecNd;
-  mySecondVecNd.Print();
-  
-  //delete myFirstVecNd;				
-  // (i) delete mySecondVecNd; // not working since no "new" is used
-  //delete mySecondVecNd; 
-  // (ii)( does not work why?
-  // vecNdTest(1487) malloc: *** error for object 0x7f8f48c03ab0: pointer being freed was not allocated
-  // *** set a breakpoint in malloc_error_break to debug
-  // Abort
-  // Solution: Copy constructor and = assignment operator have to be user defined
-  // since we have a pointer in our class !!!
-  cout<<endl;
-  cout<<" Program end!"<<endl;
 }
