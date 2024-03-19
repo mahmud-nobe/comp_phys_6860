@@ -57,7 +57,7 @@ vecNd vecNd::operator + (vecNd &v)
   //cout<<x<<" "<<v.GetX()<<endl;
   //cout<<y<<" "<<v.GetY()<<endl;
   
-  vecNd v_new(&v);
+  vecNd v_new(v);
   
   for (int i = 0; i<ndim; i++){
   	v_new.SetComponent(i, x[i] + v.GetComponent(i) );
