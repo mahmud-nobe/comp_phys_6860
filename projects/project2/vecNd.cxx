@@ -2,6 +2,7 @@
 // Implementation of member function
 
 #include "vecNd.h"
+#include "matrixNN.h"
 
 #include <iostream>  
 #include <cmath>
@@ -162,5 +163,31 @@ vecNd vecNd::operator * (vecNd &v)
   
 }
 
+
+// vector-matrix multiplication 
+vecNd vecNd::operator * (matrixNN &m)
+{
+	if (ndim == m.GetDimension()){
+			vecNd v_new;
+			v_new.SetN(ndim);
+			
+			for (int i=0; i<ndim; i++){
+					double elem = 0;
+					for (int n=0; n < ndim; n++){
+						elem += x[n] * m.GetElement(n, i);
+					};
+					v_new.SetComponent(i, elem);
+			};
+			cout << "Multiplication Done" << endl;
+			return v_new;
+	}
+	
+	else{
+		cout << "Dimensions are not equal!" << endl;
+		vecNd v_new; // return empty matrix
+		return v_new;
+	};
+	
+}
 
 

@@ -34,6 +34,7 @@ class vecNd
   vecNd operator + (vecNd &v);  // scaler addition
   
   vecNd operator * (vecNd &v);  // vector product
+  vecNd operator * (matrixNN &m); // vector-matrix multiplication
 
   // Setter functions
   void SetN(int n) {ndim=n;}
