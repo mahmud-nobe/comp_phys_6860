@@ -26,19 +26,27 @@ int main( )
   cout<<"Matrix via default constructor"<<endl;
   mySecondMatrix.Print();
 
-	vecNd v1(1,3,5);
-	matrixNN mat1(v1,v1,v1);
+	vecNd v1(1,2,7);
+	vecNd v2(4,6,8);
+	vecNd v3(5,6,1);
+	
+	matrixNN mat1(v1,v2,v3);
 	mat1.Print();
 	cout << "elem 2,2: " << mat1.GetElement(2,2) <<endl;
 	
 	matrixNN mat3 = mySecondMatrix * mySecondMatrix;
-	cout << "after Multiplication" << endl;
+	cout << "after Matrix Multiplication" << endl;
 	mat3.Print();
 	
 	vecNd vec3 = v1 * mySecondMatrix;
 	cout << "after Multiplication" << endl;
 	vec3.Print();
 	
+	mat1.Print();
+	cout << "Determinant of Matrix 1: " << mat1.Determinant() <<endl;
+	
+	matrixNN mat4 = mat1.transpose();
+	mat4.Print();
    
   delete myFirstVecNd;				
   delete myFirstMatrix;

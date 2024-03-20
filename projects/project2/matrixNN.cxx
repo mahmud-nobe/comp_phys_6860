@@ -21,6 +21,34 @@ void matrixNN::Print()
 	}
 }
 
+matrixNN matrixNN::transpose(){
+	matrixNN m_new(ndim);
+	for (int i=0; i<ndim; i++){
+		for (int j=0; j<ndim; j++){
+				m_new.SetElement(i,j, matrix[j][i]);
+			}
+	}
+	return m_new;
+}
+
+double matrixNN::Determinant()
+{
+	if (ndim == 1){return matrix[0][0];}
+	else if (ndim == 2){
+		return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0]);
+	}
+	else if (ndim == 3){
+		double a_0 = (matrix[1][1] * matrix[2][2]) - (matrix[1][2] * matrix[2][1]);
+		double a_1 = (matrix[1][0] * matrix[2][2]) - (matrix[1][2] * matrix[2][0]);
+		double a_2 = (matrix[1][0] * matrix[2][1]) - (matrix[1][1] * matrix[2][0]);
+		return matrix[0][0]*a_0 - matrix[0][1]*a_1 + matrix[0][2]*a_2;
+	}
+	else{
+		cout << "Please Provide a matrix with Dimension 3 or smaller!" << endl;
+		return 0;
+	}
+}
+
 // Constructors // 
 
 // default constructor

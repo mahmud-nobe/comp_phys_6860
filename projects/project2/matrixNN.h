@@ -57,6 +57,8 @@ class matrixNN
   
   // member functions
   void Print();
+  double Determinant();
+  matrixNN transpose();
 };
  
 #endif // MATRIX_H
