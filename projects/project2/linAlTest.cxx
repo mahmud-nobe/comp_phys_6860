@@ -21,7 +21,7 @@ int main( )
   myFirstVecNd->Print();
   cout<<endl;
  
-  matrixNN *myFirstMatrix=new matrixNN();
+  matrixNN *myFirstMatrix=new matrixNN(1,2,3,4);
   cout<<"Matrix via default constructor"<<endl;
   myFirstMatrix->Print();
 
