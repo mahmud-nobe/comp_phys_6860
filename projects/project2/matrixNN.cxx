@@ -8,6 +8,21 @@
 
 using namespace std;
 
+// Member Functions //
+void matrixNN::Print()
+{
+  cout<<"matrixNN Clas:"<<endl;
+  cout<<" dimension = "<<ndim<<endl;
+  for (int i=0; i<ndim; i++){
+  	for (int j=0; j<ndim; j++){
+  		cout << " " << matrix[i][j];
+  	}
+  	cout << endl;
+	}
+}
+
+// Constructors // 
+
 // default constructor
 matrixNN::matrixNN()
 {
@@ -74,14 +89,58 @@ matrixNN::~matrixNN()
 	delete [] matrix;
 }; 
 
-void matrixNN::Print()
+// Operators //
+
+// Matrix addition
+matrixNN matrixNN::operator + (matrixNN &m)
 {
-  cout<<"matrixNN Clas:"<<endl;
-  cout<<" dimension = "<<ndim<<endl;
-  for (int i=0; i<ndim; i++){
-  	for (int j=0; j<ndim; j++){
-  		cout << " " << matrix[i][j];
-  	}
-  	cout << endl;
+	matrixNN m_new();
+	ndim = m.GetDimension();	
+	m_new.SetDimension(ndim);
+	
+	for (int i=0; i<ndim; i++){
+		for (int j=0; j<ndim; j++){
+				m_new.SetElement(i, j, matrix[i][j] + m.GetElement(i,j))
+			}
 	}
+	return m_new;
 }
+
+// Matrix addition in place 
+matrixNN matrixNN::operator += (matrixNN &m)
+{
+	for (int i=0; i<ndim; i++){
+		for (int j=0; j<ndim; j++){
+				matrix[i][j] += m.GetElement(i,j)
+			}
+	}
+	return *this;
+}
+
+// Matrix subtraction
+matrixNN matrixNN::operator - (matrixNN &m)
+{
+	matrixNN m_new();
+	ndim = m.GetDimension();	
+	m_new.SetDimension(ndim);
+	
+	for (int i=0; i<ndim; i++){
+		for (int j=0; j<ndim; j++){
+				m_new.SetElement(i, j, matrix[i][j] - m.GetElement(i,j))
+			}
+	}
+	return m_new;
+}
+
+// Matrix subtraction in place 
+matrixNN matrixNN::operator -= (matrixNN &m)
+{
+	for (int i=0; i<ndim; i++){
+		for (int j=0; j<ndim; j++){
+				matrix[i][j] -= m.GetElement(i,j)
+			}
+	}
+	return *this;
+}
+
+

@@ -37,6 +37,8 @@ class matrixNN
   // operators
   matrixNN operator + (matrixNN &m); // matrix addition
   matrixNN operator += (matrixNN &m); // matrix addition in place
+  matrixNN operator - (matrixNN &m); // subtraction addition
+  matrixNN operator -= (matrixNN &m); // subtraction addition in place
   
   // getter functions
   int GetDimension() {return ndim;}
