@@ -5,6 +5,9 @@
 // vector operations we have to include
 // the header too
 
+#ifndef MATRIX_H
+#define MATRIX_H
+
 #include "vecNd.h"
 
 class matrixNN
@@ -24,4 +27,4 @@ class matrixNN
   void Print();
 };
  
-
+#endif // MATRIX_H

@@ -1,6 +1,9 @@
 // vecNd class definition
 // header file for vecNd class
 
+#ifndef VECND_H
+#define VECND_H
+
 class vecNd
 {
   private:
@@ -43,5 +46,7 @@ class vecNd
   double Length();
   double scaler_prod(vecNd &v);
 };
+
+#endif // VECND_H
  
 
