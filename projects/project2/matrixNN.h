@@ -33,10 +33,21 @@ class matrixNN
  
   // destructor
   ~matrixNN();
-
+  
+  // operators
+  matrixNN operator + (matrixNN &m); // matrix addition
+  matrixNN operator += (matrixNN &m); // matrix addition in place
+  
+  // getter functions
+  int GetDimension() {return ndim;}
+  double GetElement(int r, int c){return (double) matrix[r][c];}
+  
+  // setter functions
+  void SetDimension(n) {ndim = n;}
+  void SetElement(int r, int c, double elem) {matrix[r][c] = elem;}
+  
   // member functions
   void Print();
-  double GetElement(int r, int c){return (double) matrix[r][c];}
 };
  
 #endif // MATRIX_H
