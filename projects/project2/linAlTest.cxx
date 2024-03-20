@@ -21,10 +21,13 @@ int main( )
   myFirstVecNd->Print();
   cout<<endl;
  
-  matrixNN *myFirstMatrix=new matrixNN(1,2,3,4);
+  matrixNN *myFirstMatrix=new matrixNN(1,2,3,4,5,6,7,8,9);
   cout<<"Matrix via default constructor"<<endl;
   myFirstMatrix->Print();
 
+	vecNd v1(1,3,5);
+	matrixNN mat1(v1,v1,v1);
+	mat1.Print();
    
   delete myFirstVecNd;				
   delete myFirstMatrix;

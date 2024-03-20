@@ -27,9 +27,9 @@ class matrixNN
   // 2x2 matrix constructor
   matrixNN(double a1, double a2, double b1, double b2); 
   // 3x3 matrix constructor
-  // matrixNN(double a1, double a2, double a3, double a1, double a2, double a3, double a1, double a2, double a3);
+  matrixNN(double a1, double a2, double a3, double b1, double b2, double b3, double c1, double c2, double c3);
   // 3x3 matrix with 3 row vectors
-  // matrixNN(vecNd &r1, vecNd &r2, vecNd &r3);
+  matrixNN(vecNd &r1, vecNd &r2, vecNd &r3);
  
   // destructor
   ~matrixNN();
