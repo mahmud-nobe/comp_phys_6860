@@ -4,6 +4,8 @@
 #ifndef VECND_H
 #define VECND_H
 
+class matrixNN; // forward declaration
+
 class vecNd
 {
   private:

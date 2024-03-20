@@ -8,9 +8,11 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include "vecNd.h"
+// forward declaration 
+// instead of #include "vecNd.h"
+class vecNd;
 
-class matrixNN
+class matrixNN: public vecNd
 {
   private:
 

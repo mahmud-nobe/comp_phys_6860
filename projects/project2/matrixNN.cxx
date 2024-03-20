@@ -7,7 +7,7 @@
 
 using namespace std;
 
-matrixNN::matrixNN()
+matrixNN::matrixNN():vecNd()
 {
   //default constructor
   //DEBUG:
