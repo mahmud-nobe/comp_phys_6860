@@ -12,44 +12,41 @@ using namespace std;
 
 int main( )
 { 
-  // declare dynamically and 
-  //set a new variable of type vec2d
-  vecNd *myFirstVecNd=new vecNd(2.0,1.0,3.0);
-
-  cout<<endl;
-  cout<<"First Vector:"<<endl;
-  myFirstVecNd->Print();
-  cout<<endl;
- 
-  matrixNN *myFirstMatrix = new matrixNN(1,2,3,4,5,6,7,8,9);
-  matrixNN mySecondMatrix = *myFirstMatrix;
-  cout<<"Matrix via default constructor"<<endl;
-  mySecondMatrix.Print();
-
+  // declare vectors
 	vecNd v1(1,2,7);
 	vecNd v2(4,6,8);
 	vecNd v3(5,6,1);
 	
+	cout<<endl;
+  cout<<"Vector 1:"<<endl;
+  v1.Print();
+  cout<<endl;
+  
 	matrixNN mat1(v1,v2,v3);
+	
+	cout<<endl;
+  cout<<"Test Matrix:"<<endl;
 	mat1.Print();
-	cout << "elem 2,2: " << mat1.GetElement(2,2) <<endl;
+	cout << "Matrix element (2,2): " << mat1.GetElement(2,2) << endl;
+	cout<<endl;
 	
-	matrixNN mat3 = mySecondMatrix * mySecondMatrix;
-	cout << "after Matrix Multiplication" << endl;
-	mat3.Print();
+	matrixNN mat2 = mat1 * mat1;
+	cout << "after Matrix Multiplication: M1 * M1:" << endl;
+	mat2.Print();
+	cout<<endl;
 	
-	vecNd vec3 = v1 * mySecondMatrix;
-	cout << "after Multiplication" << endl;
+	vecNd vec3 = v1 * mat1;
+	cout << "after Multiplication: v1 * M1" << endl;
 	vec3.Print();
+	cout<<endl;
 	
 	mat1.Print();
 	cout << "Determinant of Matrix 1: " << mat1.Determinant() <<endl;
+	cout<<endl;
 	
-	matrixNN mat4 = mat1.transpose();
-	mat4.Print();
-   
-  delete myFirstVecNd;				
-  delete myFirstMatrix;
+	matrixNN mat3 = mat1.transpose();
+	mat3.Print();
+	cout<<endl;
 
   cout<<" Program end!"<<endl;
 }
