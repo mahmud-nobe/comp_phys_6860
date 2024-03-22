@@ -67,21 +67,29 @@ double matrixNN::Determinant()
 		return matrix[0][0]*a_0 - matrix[0][1]*a_1 + matrix[0][2]*a_2;
 	}
 	else{
-		cout << "Please Provide a matrix with Dimension 3 or smaller!" << endl;
-		return 0;
+		// use cofactor expansion formula along first row
+		double det = 0;
+		for (int j=0; j<ndim; j++){
+			det += matrix[0][j] * this->getCofactor(0,j); 
+		}
+		return det;
 	}
 }
 
 matrixNN matrixNN::inverse(){
-	matrixNN m_new(ndim);
+	matrixNN m_new(ndim); // initialize empty matrix
 	double det = this->Determinant();
+	if (det == 0){
+		cout << "Determinant: 0. So no inverse matrix Exist!";
+		return m_new; // empty matrix
+	};
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
 				double cofactor = this->getCofactor(i,j);
-				m_new.SetElement(i,j, cofactor/det);
+				m_new.SetElement(i,j, cofactor/det); 
 			}
 	}
-	return m_new;
+	return m_new.transpose(); // adjoint is transpose of cofactor matrix
 }
 
 // Constructors // 
@@ -156,7 +164,7 @@ matrixNN::matrixNN(vecNd &r1, vecNd &r2, vecNd &r3)
 // Destructor
 matrixNN::~matrixNN() 
 {
-  cout<<" matrixNN: default destructor called"<<endl;
+  // cout<<" matrixNN: default destructor called"<<endl;
   /*for (int i=0; i<ndim; i++){
 		delete [] matrix[i];
 	}
