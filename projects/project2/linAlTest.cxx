@@ -18,39 +18,42 @@ int main( )
 	vecNd v3(5,6,1);
 	
 	cout<<endl;
-  cout<<"Vector 1:"<<endl;
+  cout<<"Vector v1:"<<endl;
   v1.Print();
   cout<<endl;
   
 	matrixNN mat1(v1,v2,v3);
 	
 	cout<<endl;
-  cout<<"Test Matrix:"<<endl;
+  cout<<"Test Matrix M1:"<<endl;
 	mat1.Print();
-	cout << "Matrix element (2,2): " << mat1.GetElement(2,2) << endl;
+	cout << "Matrix element M1(1,2): " << mat1.GetElement(1,2) << endl;
+	cout<<endl;
+	
+	cout << "Determinant of M1: " << mat1.Determinant() <<endl;
 	cout<<endl;
 	
 	matrixNN mat2 = mat1 * mat1;
-	cout << "after Matrix Multiplication: M1 * M1:" << endl;
+	cout << "Matrix Multiplication: M1 * M1" << endl;
 	mat2.Print();
 	cout<<endl;
 	
-	vecNd vec3 = v1 * mat1;
-	cout << "after Multiplication: v1 * M1" << endl;
-	vec3.Print();
-	cout<<endl;
 	
-	mat1.Print();
-	cout << "Determinant of Matrix 1: " << mat1.Determinant() <<endl;
+	vecNd v1_m1 = v1 * mat1;
+	cout << "Multiplication: v1 * M1" << endl;
+	v1_m1.Print();
 	cout<<endl;
+
 	
 	matrixNN mat3 = mat1.removeRowCol(1,1);
+	cout << "Removing Row=1, Col=1 from M1" << endl;
 	mat3.Print();
 	cout<<endl;
 	
 	cout << "Cofactor (1,1): " << mat1.getCofactor(1,1) <<endl;
 	cout<<endl;
 
+	cout << endl << "Inverse of Matrix 1:" << endl;
 	matrixNN mat1_inv = mat1.inverse();
 	mat1_inv.Print();
 	cout<<endl;

@@ -85,11 +85,10 @@ matrixNN matrixNN::inverse(){
 	};
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
-				double cofactor = this->getCofactor(i,j);
-				m_new.SetElement(i,j, cofactor/det); 
+				m_new.SetElement(i,j, this->getCofactor(i,j)); 
 			}
 	}
-	return m_new.transpose(); // adjoint is transpose of cofactor matrix
+	return m_new.transpose() /= det; // adjoint is transpose of cofactor matrix
 }
 
 // Constructors // 
@@ -108,7 +107,6 @@ matrixNN::matrixNN()
 // constructor for nxn matrix allocation 
 matrixNN::matrixNN(int n)
 {
-  cout<<" matrixNN: default constructor called"<<endl;
   ndim=n;
   matrix = new double *[ndim];
 	for (int i=0; i<ndim; i++){
@@ -164,7 +162,7 @@ matrixNN::matrixNN(vecNd &r1, vecNd &r2, vecNd &r3)
 // Destructor
 matrixNN::~matrixNN() 
 {
-  // cout<<" matrixNN: default destructor called"<<endl;
+  cout<<" matrixNN: default destructor called"<<endl;
   /*for (int i=0; i<ndim; i++){
 		delete [] matrix[i];
 	}
@@ -243,6 +241,30 @@ matrixNN matrixNN::operator -= (matrixNN &m)
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
 				matrix[i][j] -= m.GetElement(i,j);
+			}
+	}
+	return *this;
+}
+
+// Matrix scaler division
+matrixNN matrixNN::operator / (double a)
+{
+	matrixNN m_new(ndim);
+	
+	for (int i=0; i<ndim; i++){
+		for (int j=0; j<ndim; j++){
+				m_new.SetElement(i, j, matrix[i][j]/a);
+			}
+	}
+	return m_new;
+}
+
+// Matrix scaler division in place 
+matrixNN matrixNN::operator /= (double a)
+{
+	for (int i=0; i<ndim; i++){
+		for (int j=0; j<ndim; j++){
+				matrix[i][j] /= a;
 			}
 	}
 	return *this;
