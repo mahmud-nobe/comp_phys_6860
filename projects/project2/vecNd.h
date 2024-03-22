@@ -32,6 +32,10 @@ class vecNd
   
   vecNd operator += (vecNd &v); // scaler addition (in place)
   vecNd operator + (vecNd &v);  // scaler addition
+  vecNd operator -= (vecNd &v); // scaler subtraction (in place)
+  vecNd operator - (vecNd &v);  // scaler subtraction
+  vecNd operator /= (double a); // scaler division (in place)
+  vecNd operator / (double a);  // scaler division
   
   vecNd operator * (vecNd &v);  // vector product
   vecNd operator * (matrixNN &m); // vector-matrix multiplication

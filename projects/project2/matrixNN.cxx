@@ -159,6 +159,7 @@ matrixNN::matrixNN(vecNd &r1, vecNd &r2, vecNd &r3)
 	
 }
 
+
 // Destructor
 matrixNN::~matrixNN() 
 {
