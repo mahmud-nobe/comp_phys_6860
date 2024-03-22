@@ -190,6 +190,30 @@ vecNd vecNd::operator / (double a)
   return v_new;
 }
 
+// operator: scaler multiplication in place
+vecNd vecNd::operator *= (double a)
+{
+  cout<<" vecNd: user defined += operator:"<<endl;
+  
+  for (int i = 0; i<ndim; i++){
+  	x[i] *= a;
+  }
+
+  return *this;
+}
+
+// operator: scaler multiplication 
+vecNd vecNd::operator * (double a)
+{
+	cout<<" vecNd: user defined + operator:"<<endl;
+  vecNd v_new(*this);
+  for (int i = 0; i<ndim; i++){
+  	v_new.SetComponent(i, x[i] * a);
+  }
+ 
+  return v_new;
+}
+
 // operator: vector product 
 vecNd vecNd::operator * (vecNd &v)
 {
