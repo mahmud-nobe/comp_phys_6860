@@ -22,6 +22,21 @@ int main( )
   v1.Print();
   cout<<endl;
   
+  cout<<endl;
+  cout<<"Vector v2:"<<endl;
+  v1.Print();
+  cout<<endl;
+  
+  cout<<endl;
+  cout<<"Dot Product v1 x v2:"<< v1.scaler_prod(v2) << endl;
+  cout<<endl;
+  
+  cout<<endl;
+  vecNd v1_v2 = v1 * v2;
+  cout<<"Cross Product v1 x v2:"<<endl;
+  v1_v2.Print();
+  cout<<endl;
+  
 	matrixNN mat1(v1,v2,v3);
 	
 	cout<<endl;
