@@ -31,6 +31,29 @@ matrixNN matrixNN::transpose(){
 	return m_new;
 }
 
+matrixNN matrixNN::removeRowCol(int r, int c){
+	// return a matrix after removing row r and column c
+	matrixNN m_new(ndim-1);
+	int r_new = 0;
+	for (int i=0; i<ndim; i++){
+		if (i !=r ){
+			int c_new = 0;
+			for (int j=0; j<ndim; j++){
+				if (j != c){
+						m_new.SetElement(r_new,c_new, matrix[i][j]);
+						c_new += 1;
+					};
+				};
+			r_new += 1;
+		};
+	};
+	return m_new;
+}
+
+double matrixNN::getCofactor(int r, int c){
+	return pow(-1, r+c) * this->removeRowCol(r,c).Determinant();
+}
+
 double matrixNN::Determinant()
 {
 	if (ndim == 1){return matrix[0][0];}
@@ -47,6 +70,18 @@ double matrixNN::Determinant()
 		cout << "Please Provide a matrix with Dimension 3 or smaller!" << endl;
 		return 0;
 	}
+}
+
+matrixNN matrixNN::inverse(){
+	matrixNN m_new(ndim);
+	double det = this->Determinant();
+	for (int i=0; i<ndim; i++){
+		for (int j=0; j<ndim; j++){
+				double cofactor = this->getCofactor(i,j);
+				m_new.SetElement(i,j, cofactor/det);
+			}
+	}
+	return m_new;
 }
 
 // Constructors // 
@@ -209,7 +244,7 @@ matrixNN matrixNN::operator -= (matrixNN &m)
 matrixNN matrixNN::operator * (matrixNN &m)
 {
 	if (ndim == m.GetDimension()){
-			matrixNN m_new(3);
+			matrixNN m_new(ndim); // initialize with dimension
 			m_new.SetDimension(ndim);
 			
 			for (int i=0; i<ndim; i++){

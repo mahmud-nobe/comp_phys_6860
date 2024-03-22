@@ -59,6 +59,9 @@ class matrixNN
   void Print();
   double Determinant();
   matrixNN transpose();
+  matrixNN removeRowCol(int r, int c);
+  double getCofactor(int r, int c);
+  matrixNN inverse();
 };
  
 #endif // MATRIX_H

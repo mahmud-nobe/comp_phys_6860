@@ -44,9 +44,16 @@ int main( )
 	cout << "Determinant of Matrix 1: " << mat1.Determinant() <<endl;
 	cout<<endl;
 	
-	matrixNN mat3 = mat1.transpose();
+	matrixNN mat3 = mat1.removeRowCol(1,1);
 	mat3.Print();
 	cout<<endl;
+	
+	cout << "Cofactor (1,1): " << mat1.getCofactor(1,1) <<endl;
+	cout<<endl;
 
+	matrixNN mat1_inv = mat1.inverse();
+	mat1_inv.Print();
+	cout<<endl;
+	
   cout<<" Program end!"<<endl;
 }
