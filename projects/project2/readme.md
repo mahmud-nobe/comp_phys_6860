@@ -21,8 +21,8 @@ Class implementation of n-dimensional vector using cpp pointer array.
 - **/** division by a scaler number
 - **/=** division by a scaler number (in place)
 
-- \text{*} (vecNd &v) vector-vector cross product
-- \text{*} (matrixNN &m) vector-matrix multiplication
+- $\text{*}$ (vecNd &v) vector-vector cross product
+- $\text{*}$ (matrixNN &m) vector-matrix multiplication
 
 ### 2. NxN Matrix Class: matrixNN
 
@@ -32,32 +32,42 @@ Class implementation of n-dimensional square matrix using cpp double pointer arr
 - ndim: number of dimension
 - **matrix: pointer double array: first pointer array stores the row and each row is a pointer array for all its element
 
+#### Constructors:
+- matrixNN(): default constructor
+- matrixNN(int n): nxn empty matrix construction for dimension n
+- matrixNN(double a1, double a2, double b1, double b2): 2x2 matrix constructor
+- matrixNN(double a1, double a2, double a3, double b1, double b2, double b3, double c1, double c2, double c3): 3x3 matrix constructor
+- matrixNN(vecNd &r1, vecNd &r2, vecNd &r3): 3x3 matrix with 3 row vectors
+
 #### Member Functions:
 - Print: show the dimension and matrix elements
 - Determinant: return the determinant of the matrix
 - transpose: return the transpose of the matrix, $A^T_{ij} = A_{ji}$
 - removeRowCol(r, c): return a (n-1)-dimensional matrix $A(r|c)$ by removing row r and column c.
 - getCofactor(r, c): return the cofactor of element (r,c), $C_{r,c} = (-1)^{r+c} det(A(r|c))$
-- inverse: return the inverse matrix, $M^{-1} = \frac{1}{det(M)}\,Adj(M)$
+- inverse: return the inverse matrix, $M^{-1} = \frac{1}{det(M)} Adj(M)$
 
 #### Operators:
-- **+** scaler addition of two vectors
-- **+=** scaler addition of two vectors(in place)
-- **-** scaler subtraction of two vectors
-- **-=** scaler subtraction of two vectors (in place)
+- **+** scaler addition of two matrices
+- **+=** scaler addition of two matrices (in place)
+- **-** scaler subtraction of two matrices
+- **-=** scaler subtraction of two matrices (in place)
 - **/** division by a scaler number
 - **/=** division by a scaler number (in place)
 
-- \text{*} (vecNd &v) vector-vector cross product
-- \text{*} (matrixNN &m) vector-matrix multiplication
+- \text{*} (vecNd &v) matrix-vector multiplication
+- \text{*} (matrixNN &m) matrix-matrix multiplication
 
-Prepare a Linear Algebra Classes, n-dim vector vecNd and a nxn matrix matrixNN classes. The vecNd class can either use a c++ array or (you can rewrite the in class exercise) the STL vector. The matrix class should use the STL vector. Provide standard functions like Print() and the appropriate setters and getters, as well as special constructors for the 2d and 3d cases. Define all the proper operators and also allow vector with matrix multiplication (of course you should check if dimension if that operation is allowed, same for the vector-vector and matrix-matrix cases). Define the scalar and vector product for vecNd (restrict the vector product for simplicity to 2 and 3 dimension). For the matrix class, include the calculation of the determinant and if you feel adventures try to implement the inverse for a 3x3 matrix (for simplicity, you can restrict your matrix class to integers only).  Use the test matrix:
+### Example:
+#### Test matrix, M1:
 
 1 2 7
 4 6 8
 5 6 1
 
-with a determinant of -12 and the inverse of
+det(M1) = -12 
+
+$M1^{-1}$:
 
 7/2  -10/3 13/6
 -3 17/6 -5/3
