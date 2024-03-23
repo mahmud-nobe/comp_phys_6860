@@ -24,11 +24,11 @@ int main( )
   
   cout<<endl;
   cout<<"Vector v2:"<<endl;
-  v1.Print();
+  v2.Print();
   cout<<endl;
   
   cout<<endl;
-  cout<<"Dot Product v1 x v2:"<< v1.scaler_prod(v2) << endl;
+  cout<<"Dot Product v1 x v2: "<< v1.scaler_prod(v2) << endl;
   cout<<endl;
   
   cout<<endl;

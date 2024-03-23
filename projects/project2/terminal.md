@@ -16,12 +16,12 @@ VecNd Clas:
 Vector v2:
 VecNd Clas:
  Dimension = 3
- x[0] = 1
- x[1] = 2
- x[2] = 7
+ x[0] = 4
+ x[1] = 6
+ x[2] = 8
 
 
-Dot Product v1 x v2:72
+Dot Product v1 x v2: 72
 
 
  vecNd: user defined copy constructor called!
