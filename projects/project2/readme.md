@@ -76,11 +76,11 @@ Class implementation of n-dimensional square matrix using cpp double pointer arr
 #### Test matrix:
 
 - $M_1$:
-$\begin{pmatrix}
-1 & 2 & 7\\
-4 & 6 & 8\\
-5 & 6 & 1
-\end{pmatrix}$
+$$ \begin{pmatrix}
+   1 & 2 & 7\\
+   4 & 6 & 8\\
+   5 & 6 & 1
+   \end{pmatrix} $$
 
 
 - det($M_1$) = -12 
@@ -91,15 +91,15 @@ $\begin{pmatrix}
 44 56 30
 68 92 84
 34 52 84
-$\begin{pmatrix}
-44 & 56 & 30\\
-68 & 92 & 84\\
-34 & 52 & 84
-\end{pmatrix}$
+$$ \begin{pmatrix}
+   44 & 56 & 30\\
+   68 & 92 & 84\\
+   34 & 52 & 84
+   \end{pmatrix} $$
 
 - $M_1^{-1}$:
-$\begin{pmatrix}
-7/2  & -10/3 & 13/6\\
--3 & 17/6 & -5/3\\
-1/2 & -1/3 & 1/6
-\end{pmatrix}$
+$$ \begin{pmatrix}
+   7/2  & -10/3 & 13/6\\
+   -3 & 17/6 & -5/3\\
+   1/2 & -1/3 & 1/6
+   \end{pmatrix} $$
