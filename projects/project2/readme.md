@@ -16,7 +16,7 @@ Class implementation of n-dimensional vector using cpp pointer array.
 #### Member Functions:
 - Print: show the dimension and vector components
 - Length: return the magnitude of the vector
-- scaler_prod: return the result of a scaler product with another vector
+- scaler_prod(vecNd &v): return the result of a scaler product with another vector
 
 #### Operators:
 - **+** scaler addition of two vectors
@@ -65,32 +65,41 @@ Class implementation of n-dimensional square matrix using cpp double pointer arr
 
 ### Example:
 #### Test vector:
-- v1 = [1,2,7]
-- v2 = [4,6,8]
-- v3 = [5,6,1]
+- $v_1$ = [1,2,7]
+- $v_2$ = [4,6,8]
+- $v_3$ = [5,6,1]
 
-- v1.v2 = 72
+- $v_1 \cdot v_2$ = 72
 
-- v1 x v2 = [-26, 20, -2]
+- $v_1 \times v_2$ = [-26, 20, -2]
  
 #### Test matrix:
 
-- M1:
-1 2 7
-4 6 8
-5 6 1
+- $M_1$:
+$\begin{pmatrix}
+1 & 2 & 7\\
+4 & 6 & 8\\
+5 & 6 & 1
+\end{pmatrix}$
 
-- det(M1) = -12 
 
-- v1 x M1 = [44, 56, 30]
+- det($M_1$) = -12 
 
-- M1 x M1:
+- $v_1$ x $M_1$ = [44, 56, 30]
+
+- $M_1$ x $M_1$:
 44 56 30
 68 92 84
 34 52 84
+$\begin{pmatrix}
+44 & 56 & 30\\
+68 & 92 & 84\\
+34 & 52 & 84
+\end{pmatrix}$
 
-- $M1^{-1}$:
-
-7/2  -10/3 13/6
--3 17/6 -5/3
-1/2 -1/3 1/6
+- $M_1^{-1}$:
+$\begin{pmatrix}
+7/2  & -10/3 & 13/6\\
+-3 & 17/6 & -5/3\\
+1/2 & -1/3 & 1/6
+\end{pmatrix}$
