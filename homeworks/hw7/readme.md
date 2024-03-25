@@ -21,6 +21,6 @@ Implement/solve the pendulum with GSL and compare to the small angle approximati
 \begin{align*}
   \frac{d^2\theta}{dt^2} + \frac{g}{l} \sin \theta &= 0\\
   \frac{d^2\theta}{dt^2} + \frac{g}{l} \theta &= 0\\
-  \text{as for, }\theta << 1 \text{, } \quad \sin \theta &approx \theta
+  \text{as for, }\theta << 1 \text{, } \quad \sin \theta &\approx \theta
 \end{align*}
 ```
