@@ -50,6 +50,16 @@ vecNd::vecNd()
   x=new double[1];
 }
 
+// constructor with dimension
+vecNd::vecNd(int n)
+{
+  cout<<" vecNd: user defined constructor with dimension"<<endl;
+  ndim=n;
+  // create an "array" so that we can use the
+  // generic delete in the destructor
+  x=new double[n];
+}
+
 // constructor for nd vector as a 2d vector
 vecNd::vecNd(double mx, double my)
 {
@@ -108,7 +118,6 @@ vecNd vecNd::operator = (vecNd *v)
 {
   cout<<" vecNd: user defined = operator *:"<<endl;
   ndim=(int) v->GetDimension();
-  //x=new double[ndim];
 
   for (int i=0;i<(int) ndim;i++)
     x[i]=v->GetComponent(i);
@@ -117,7 +126,7 @@ vecNd vecNd::operator = (vecNd *v)
 }
 
 // operator: addition in place
-vecNd vecNd::operator += (vecNd &v)
+vecNd& vecNd::operator += (vecNd &v)
 {
   cout<<" vecNd: user defined += operator:"<<endl;
   
@@ -130,19 +139,19 @@ vecNd vecNd::operator += (vecNd &v)
 }
 
 // operator: addition 
-vecNd vecNd::operator + (vecNd &v)
+vecNd& vecNd::operator + (vecNd &v)
 {
 	cout<<" vecNd: user defined + operator:"<<endl;
-  vecNd v_new(v);
+  vecNd *v_new = new vecNd(ndim);
   for (int i = 0; i<ndim; i++){
-  	v_new.SetComponent(i, x[i] + v.GetComponent(i) );
+  	v_new->SetComponent(i, x[i] + v.GetComponent(i) );
   }
  
-  return v_new;
+  return *v_new;
 }
 
 // operator: subtraction in place
-vecNd vecNd::operator -= (vecNd &v)
+vecNd& vecNd::operator -= (vecNd &v)
 {
   cout<<" vecNd: user defined += operator:"<<endl;
   
@@ -155,19 +164,19 @@ vecNd vecNd::operator -= (vecNd &v)
 }
 
 // operator: subtraction 
-vecNd vecNd::operator - (vecNd &v)
+vecNd& vecNd::operator - (vecNd &v)
 {
 	cout<<" vecNd: user defined + operator:"<<endl;
-  vecNd v_new(v);
+  vecNd *v_new = new vecNd(ndim);
   for (int i = 0; i<ndim; i++){
-  	v_new.SetComponent(i, x[i] - v.GetComponent(i) );
+  	v_new->SetComponent(i, x[i] - v.GetComponent(i) );
   }
  
-  return v_new;
+  return *v_new;
 }
 
 // operator: scaler division in place
-vecNd vecNd::operator /= (double a)
+vecNd& vecNd::operator /= (double a)
 {
   cout<<" vecNd: user defined += operator:"<<endl;
   
@@ -179,19 +188,19 @@ vecNd vecNd::operator /= (double a)
 }
 
 // operator: scaler division 
-vecNd vecNd::operator / (double a)
+vecNd& vecNd::operator / (double a)
 {
 	cout<<" vecNd: user defined + operator:"<<endl;
-  vecNd v_new(*this);
+  vecNd *v_new = new vecNd(ndim);
   for (int i = 0; i<ndim; i++){
-  	v_new.SetComponent(i, x[i] / a);
+  	v_new->SetComponent(i, x[i] / a);
   }
  
-  return v_new;
+  return *v_new;
 }
 
 // operator: scaler multiplication in place
-vecNd vecNd::operator *= (double a)
+vecNd& vecNd::operator *= (double a)
 {
   cout<<" vecNd: user defined += operator:"<<endl;
   
@@ -203,35 +212,35 @@ vecNd vecNd::operator *= (double a)
 }
 
 // operator: scaler multiplication 
-vecNd vecNd::operator * (double a)
+vecNd& vecNd::operator * (double a)
 {
 	cout<<" vecNd: user defined + operator:"<<endl;
-  vecNd v_new(*this);
+  vecNd *v_new = new vecNd(ndim);
   for (int i = 0; i<ndim; i++){
-  	v_new.SetComponent(i, x[i] * a);
+  	v_new->SetComponent(i, x[i] * a);
   }
  
-  return v_new;
+  return *v_new;
 }
 
 // operator: vector product 
-vecNd vecNd::operator * (vecNd &v)
+vecNd& vecNd::operator * (vecNd &v)
 {
 	if (ndim != (int) v.GetDimension()){
 		cout << "The dimensions are not equal!" << endl;
 	}
 	else if (ndim == 3){
 		// vector product for 3D:
-		vecNd v_new(v);
+		vecNd *v_new = new vecNd(ndim);
 		
-		v_new.SetComponent(0, x[1]*v.GetComponent(2) - x[2]*v.GetComponent(1) );
-		v_new.SetComponent(1, x[2]*v.GetComponent(0) - x[0]*v.GetComponent(2) );
-		v_new.SetComponent(2, x[0]*v.GetComponent(1) - x[1]*v.GetComponent(0) );
+		v_new->SetComponent(0, x[1]*v.GetComponent(2) - x[2]*v.GetComponent(1) );
+		v_new->SetComponent(1, x[2]*v.GetComponent(0) - x[0]*v.GetComponent(2) );
+		v_new->SetComponent(2, x[0]*v.GetComponent(1) - x[1]*v.GetComponent(0) );
 		
-		return v_new;
+		return *v_new;
 	};
-	
-	return vecNd();
+	vecNd *v_new = new vecNd(0);
+	return *v_new;
   
 }
 
@@ -240,8 +249,7 @@ vecNd vecNd::operator * (vecNd &v)
 vecNd& vecNd::operator * (matrixNN &m)
 {
 	if (ndim == m.GetDimension()){
-			vecNd *v_new = new vecNd();
-			v_new->SetN(ndim);
+			vecNd *v_new = new vecNd(ndim);
 			
 			for (int i=0; i<ndim; i++){
 					double elem = 0;

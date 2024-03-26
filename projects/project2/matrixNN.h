@@ -39,12 +39,12 @@ class matrixNN
   matrixNN operator = (matrixNN &m); // equal operator
   matrixNN operator = (matrixNN *m); // equal operator
   
-  matrixNN operator + (matrixNN &m); // matrix addition
-  matrixNN operator += (matrixNN &m); // matrix addition in place
-  matrixNN operator - (matrixNN &m); // subtraction addition
-  matrixNN operator -= (matrixNN &m); // subtraction addition in place
-  matrixNN operator / (double a); // scaler division
-  matrixNN operator /= (double a); // scaler division in place
+  matrixNN& operator + (matrixNN &m); // matrix addition
+  matrixNN& operator += (matrixNN &m); // matrix addition in place
+  matrixNN& operator - (matrixNN &m); // subtraction addition
+  matrixNN& operator -= (matrixNN &m); // subtraction addition in place
+  matrixNN& operator / (double a); // scaler division
+  matrixNN& operator /= (double a); // scaler division in place
   
   matrixNN& operator * (matrixNN &v); // matrix-matrix multiplication
   vecNd& operator * (vecNd &v); // matrix-vector multiplication

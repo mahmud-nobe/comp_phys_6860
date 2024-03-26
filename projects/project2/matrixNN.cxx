@@ -21,33 +21,33 @@ void matrixNN::Print()
 	}
 }
 
-matrixNN matrixNN::transpose(){
-	matrixNN m_new(ndim);
+matrixNN& matrixNN::transpose(){
+	matrixNN *m_new = new matrixNN(ndim);
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
-				m_new.SetElement(i,j, matrix[j][i]);
+				m_new->SetElement(i,j, matrix[j][i]);
 			}
 	}
-	return m_new;
+	return *m_new;
 }
 
-matrixNN matrixNN::removeRowCol(int r, int c){
+matrixNN& matrixNN::removeRowCol(int r, int c){
 	// return a matrix after removing row r and column c
-	matrixNN m_new(ndim-1);
+	matrixNN *m_new = new matrixNN(ndim-1);
 	int r_new = 0;
 	for (int i=0; i<ndim; i++){
 		if (i !=r ){
 			int c_new = 0;
 			for (int j=0; j<ndim; j++){
 				if (j != c){
-						m_new.SetElement(r_new,c_new, matrix[i][j]);
+						m_new->SetElement(r_new,c_new, matrix[i][j]);
 						c_new += 1;
 					};
 				};
 			r_new += 1;
 		};
 	};
-	return m_new;
+	return *m_new;
 }
 
 double matrixNN::getCofactor(int r, int c){
@@ -88,7 +88,7 @@ matrixNN& matrixNN::inverse(){
 				m_new->SetElement(i,j, this->getCofactor(i,j)); 
 			}
 	}
-	return *m_new->transpose() /= det; // adjoint is transpose of cofactor matrix
+	return m_new->transpose() /= det;// adjoint is transpose of cofactor matrix
 }
 
 // Constructors // 
@@ -196,22 +196,20 @@ matrixNN matrixNN::operator = (matrixNN *m)
 }
 
 // Matrix addition
-matrixNN matrixNN::operator + (matrixNN &m)
+matrixNN& matrixNN::operator + (matrixNN &m)
 {
-	matrixNN m_new(m);
-	ndim = m.GetDimension();	
-	m_new.SetDimension(ndim);
+	matrixNN *m_new = new matrixNN(ndim);
 	
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
-				m_new.SetElement(i, j, matrix[i][j] + m.GetElement(i,j));
+				m_new->SetElement(i, j, matrix[i][j] + m.GetElement(i,j));
 			}
 	}
-	return m_new;
+	return *m_new;
 }
 
 // Matrix addition in place 
-matrixNN matrixNN::operator += (matrixNN &m)
+matrixNN& matrixNN::operator += (matrixNN &m)
 {
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
@@ -222,22 +220,20 @@ matrixNN matrixNN::operator += (matrixNN &m)
 }
 
 // Matrix subtraction
-matrixNN matrixNN::operator - (matrixNN &m)
+matrixNN& matrixNN::operator - (matrixNN &m)
 {
-	matrixNN m_new(m);
-	ndim = m.GetDimension();	
-	m_new.SetDimension(ndim);
+	matrixNN *m_new = new matrixNN(ndim);
 	
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
-				m_new.SetElement(i, j, matrix[i][j] - m.GetElement(i,j));
+				m_new->SetElement(i, j, matrix[i][j] - m.GetElement(i,j));
 			}
 	}
-	return m_new;
+	return *m_new;
 }
 
 // Matrix subtraction in place 
-matrixNN matrixNN::operator -= (matrixNN &m)
+matrixNN& matrixNN::operator -= (matrixNN &m)
 {
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
@@ -248,20 +244,20 @@ matrixNN matrixNN::operator -= (matrixNN &m)
 }
 
 // Matrix scaler division
-matrixNN matrixNN::operator / (double a)
+matrixNN& matrixNN::operator / (double a)
 {
-	matrixNN m_new(ndim);
+	matrixNN *m_new = new matrixNN(ndim);
 	
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
-				m_new.SetElement(i, j, matrix[i][j]/a);
+				m_new->SetElement(i, j, matrix[i][j]/a);
 			}
 	}
-	return m_new;
+	return *m_new;
 }
 
 // Matrix scaler division in place 
-matrixNN matrixNN::operator /= (double a)
+matrixNN& matrixNN::operator /= (double a)
 {
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
