@@ -76,19 +76,19 @@ double matrixNN::Determinant()
 	}
 }
 
-matrixNN matrixNN::inverse(){
-	matrixNN m_new(ndim); // initialize empty matrix
+matrixNN& matrixNN::inverse(){
+	matrixNN *m_new = new matrixNN(ndim); // initialize empty matrix
 	double det = this->Determinant();
 	if (det == 0){
 		cout << "Determinant: 0. So no inverse matrix Exist!";
-		return m_new; // empty matrix
+		return *m_new; // empty matrix
 	};
 	for (int i=0; i<ndim; i++){
 		for (int j=0; j<ndim; j++){
-				m_new.SetElement(i,j, this->getCofactor(i,j)); 
+				m_new->SetElement(i,j, this->getCofactor(i,j)); 
 			}
 	}
-	return m_new.transpose() /= det; // adjoint is transpose of cofactor matrix
+	return *m_new->transpose() /= det; // adjoint is transpose of cofactor matrix
 }
 
 // Constructors // 
@@ -164,10 +164,10 @@ matrixNN::matrixNN(vecNd &r1, vecNd &r2, vecNd &r3)
 matrixNN::~matrixNN() 
 {
   cout<<" matrixNN: default destructor called"<<endl;
-  /*for (int i=0; i<ndim; i++){
+  for (int i=0; i<ndim; i++){
 		delete [] matrix[i];
 	}
-	delete [] matrix;*/
+	delete [] matrix;
 }; 
 
 // Operators //
@@ -272,11 +272,11 @@ matrixNN matrixNN::operator /= (double a)
 }
 
 // Matrix multiplication 
-matrixNN matrixNN::operator * (matrixNN &m)
+matrixNN& matrixNN::operator * (matrixNN &m)
 {
 	if (ndim == m.GetDimension()){
-			matrixNN m_new(ndim); // initialize with dimension
-			m_new.SetDimension(ndim);
+			matrixNN *m_new = new matrixNN(ndim); // initialize with dimension
+			m_new->SetDimension(ndim);
 			
 			for (int i=0; i<ndim; i++){
 				for (int j=0; j<ndim; j++){
@@ -285,44 +285,44 @@ matrixNN matrixNN::operator * (matrixNN &m)
 						elem += matrix[i][n] * m.GetElement(n,j);
 
 					};
-					m_new.SetElement(i, j, elem);
+					m_new->SetElement(i, j, elem);
 				};
 			};
 			cout << "Multiplication Done" << endl;
-			return m_new;
+			return *m_new;
 	}
 	
 	else{
 		cout << "Dimensions are not equal!" << endl;
-		matrixNN m_new; // return empty matrix
-		return m_new;
+		matrixNN *m_new = new matrixNN(0); // return empty matrix
+		return *m_new;
 	};
 	
 }
 
 
 // Matrix-vector multiplication 
-vecNd matrixNN::operator * (vecNd &v)
+vecNd& matrixNN::operator * (vecNd &v)
 {
 	if (ndim == v.GetDimension()){
-			vecNd v_new(v);
-			v_new.SetN(ndim);
+			vecNd *v_new = new vecNd(v);
+			v_new->SetN(ndim);
 			
 			for (int i=0; i<ndim; i++){
 					double elem = 0;
 					for (int n=0; n < ndim; n++){
 						elem += matrix[i][n] * v.GetComponent(n);
 					};
-					v_new.SetComponent(i, elem);
+					v_new->SetComponent(i, elem);
 			};
 			cout << "Multiplication Done" << endl;
-			return v_new;
+			return *v_new;
 	}
 	
 	else{
 		cout << "Dimensions are not equal!" << endl;
-		vecNd v_new; // return empty matrix
-		return v_new;
+		vecNd *v_new = new vecNd(); // return empty matrix
+		return *v_new;
 	};
 	
 }

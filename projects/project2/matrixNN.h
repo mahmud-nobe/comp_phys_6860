@@ -46,8 +46,8 @@ class matrixNN
   matrixNN operator / (double a); // scaler division
   matrixNN operator /= (double a); // scaler division in place
   
-  matrixNN operator * (matrixNN &v); // matrix-matrix multiplication
-  vecNd operator * (vecNd &v); // matrix-vector multiplication
+  matrixNN& operator * (matrixNN &v); // matrix-matrix multiplication
+  vecNd& operator * (vecNd &v); // matrix-vector multiplication
   
   // getter functions
   int GetDimension() {return ndim;}
@@ -60,10 +60,10 @@ class matrixNN
   // member functions
   void Print();
   double Determinant();
-  matrixNN transpose();
-  matrixNN removeRowCol(int r, int c);
+  matrixNN& transpose();
+  matrixNN& removeRowCol(int r, int c);
   double getCofactor(int r, int c);
-  matrixNN inverse();
+  matrixNN& inverse();
 };
  
 #endif // MATRIX_H

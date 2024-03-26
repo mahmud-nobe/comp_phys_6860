@@ -95,7 +95,7 @@ vecNd vecNd::operator=(vecNd &v)
 {
   cout<<" vecNd: user defined = operator:"<<endl;
   ndim=(int) v.GetDimension();
-  x = new double[ndim];
+  //x = new double[ndim];
 
   for (int i=0;i<(int) ndim;i++)
     x[i]=v.GetComponent(i);
@@ -108,7 +108,7 @@ vecNd vecNd::operator = (vecNd *v)
 {
   cout<<" vecNd: user defined = operator *:"<<endl;
   ndim=(int) v->GetDimension();
-  x=new double[ndim];
+  //x=new double[ndim];
 
   for (int i=0;i<(int) ndim;i++)
     x[i]=v->GetComponent(i);
@@ -237,27 +237,27 @@ vecNd vecNd::operator * (vecNd &v)
 
 
 // vector-matrix multiplication 
-vecNd vecNd::operator * (matrixNN &m)
+vecNd& vecNd::operator * (matrixNN &m)
 {
 	if (ndim == m.GetDimension()){
-			vecNd v_new;
-			v_new.SetN(ndim);
+			vecNd *v_new = new vecNd();
+			v_new->SetN(ndim);
 			
 			for (int i=0; i<ndim; i++){
 					double elem = 0;
 					for (int n=0; n < ndim; n++){
 						elem += x[n] * m.GetElement(n, i);
 					};
-					v_new.SetComponent(i, elem);
+					v_new->SetComponent(i, elem);
 			};
 			cout << "Multiplication Done" << endl;
-			return v_new;
+			return *v_new;
 	}
 	
 	else{
 		cout << "Dimensions are not equal!" << endl;
-		vecNd v_new; // return empty matrix
-		return v_new;
+		vecNd *v_new = new vecNd(); // return empty matrix
+		return *v_new;
 	};
 	
 }
