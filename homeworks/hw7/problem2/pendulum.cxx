@@ -2,29 +2,40 @@
 This program solves the E. Lorenz Equations
  using the GSL
 */
-
+#include <iostream>
+#include <cmath>
 #include <stdio.h>
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_odeiv2.h>
   
-double sigma = 10.0;  /* parameters for the diffeq */
-double beta = 8.0/3.0;
-double rho = 28.0;
+// parameters for diff eq
+double g = 9.1;  // gravitational const
+double l = 1; // length of the rope
   
 /* dfunct - defines the first order differencial equations to solve */
-int dfunc (double t, const double y[], double f[], void *params_ptr);
+int dfunc (double t, const double y[], double f[], void *params_ptr)
+{ 
+   /* parameters are declared as globals */
+   // theta" + g/l theta = 0
+   // Let phi = theta'
+   f[0] = y[1]; // theta' = phi
+   f[1] = y[0] * (-g/l); // phi' = -g/l theta
+   return GSL_SUCCESS;	
+} // end of dfunct
 
+
+// Main function
 int main (void) {
 
-  const int dimension = 3;  /* number of differential equations */
+  const int dimension = 2;  /* number of differential equations */
 
   int status;               /* status of driver function */
 
   const double eps_abs = 1.e-8;  /* absolute error requested */
   const double eps_rel = 1.e-10; /* relative error requested */
 
-  double myparams[3];
+  double myparams[2];
   double y[dimension];    /* current solution vector */
   double t, t_next;       /* current and next independent variable */
   double tmin, tmax, delta_t; /* range of t and step size for output */
@@ -38,19 +49,17 @@ int main (void) {
   ode_system.function = dfunc;	/* the right-hand-side functions dy[i]/dt */
   ode_system.dimension = dimension;	/* number of diffeq's */
 
-  myparams[0] = sigma; /* Lorenz equations parameters */
-  myparams[1] = beta;
-  myparams[2] = rho;
+  myparams[0] = g; /* Diff equations parameters */
+  myparams[1] = l;
    
   ode_system.params = myparams;	/* parameters for GSL functions */
   tmin = 0.0;     /* starting t value */
   tmax = 40.0;    /* final t value */
   delta_t = 0.010; /* increment data points */
 
-  /* initial values of x, y, and z */
-  y[0] = 2.1473670;  // 4.250440
-  y[1] = -2.078048;  // 1.008479
-  y[2] = 27.0; 
+  /* initial values of theta, y, and z */
+  y[0] = 2.1473670;  // theta = angle
+  y[1] = 0;  // phi = angular velocity
 
   gsl_odeiv2_driver * drv =
       gsl_odeiv2_driver_alloc_y_new (&ode_system, gsl_odeiv2_step_rkf45, 
@@ -60,16 +69,16 @@ int main (void) {
   // 4th order Runge–Kutta : gsl odeiv2 step rk4
 
   printf("Input data: \n");
-  printf("Initial values x = %g y = %g z = %g \n", y[0], y[1], y[2]); 
-  printf(" Parameters: sigma= %g beta= %g rho= %g \n", sigma, beta, rho);
+  printf("Initial values theta = %g phi = %g \n", y[0], y[1]); 
+  printf(" Parameters: g= %g l= %g \n", g, l);
   printf(" Starting step size (h): %0.5e\n", h);
   printf(" Time parameters: %f %f %f \n", tmin, tmax, delta_t); 
   printf(" Absolute  and relative error requested: %0.6e %0.6e \n", 
          eps_abs, eps_rel);
   printf(" Number of equations (dimension): %d \n\n", dimension);
-  printf("    Time           x             y            z \n");
+  printf("    Time           theta             phi   \n");
   t = tmin;             /* initialize t */
-  printf ("%.5e  %.5e  %.5e   %.5e \n", t, y[0], y[1], y[2]);	/* initial values */
+  printf ("%.5e  %.5e  %.5e \n", t, y[0], y[1]);	/* initial values */
   /* step to tmax from tmin */
 
   for (t_next = tmin + delta_t; t_next <= tmax; t_next += delta_t)
@@ -80,7 +89,7 @@ int main (void) {
           break;
      }
 	 /* print at t=t_next */
-     printf ("%.5e  %.5e  %.5e   %.5e \n", t, y[0], y[1], y[2]); 
+     printf ("%.5e  %.5e  %.5e \n", t, y[0], y[1]); 
   } // end for
 
   gsl_odeiv2_driver_free (drv);
@@ -89,12 +98,4 @@ int main (void) {
 
 } // end of main
 
-int dfunc (double t, const double y[], double f[], void *params_ptr)
-{ 
-   /* parameters are declared as globals */
-   /* evaluate the right-hand-side of Lorenz equations at t */
-   f[0] = sigma * (y[1] - y[0]);
-   f[1] = y[0] * (rho - y[2]);
-   f[2] = y[0] * y[1] - beta * y[2];
-   return GSL_SUCCESS;	
-} // end of dfunct
+
