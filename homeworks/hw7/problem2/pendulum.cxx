@@ -10,7 +10,7 @@ This program solves the E. Lorenz Equations
 #include <gsl/gsl_odeiv2.h>
 #include <TROOT.h>
 #include <TFile.h>
-#include <TH3.h> 
+#include <TH2.h> 
   
 // parameters for diff eq
 double g = 9.1;  // gravitational const
@@ -46,7 +46,7 @@ int main (void) {
 
   gsl_odeiv2_system ode_system;	/* structure with the dfunc function, etc. */
 
-  printf("\nThis program numerically solves the Lorenz Equations\n\n");
+  printf("\nThis program numerically solves the Pendulum Equations\n\n");
 
   /* load values into the ode_system structure */
   ode_system.function = dfunc;	/* the right-hand-side functions dy[i]/dt */
@@ -54,6 +54,9 @@ int main (void) {
 
   myparams[0] = g; /* Diff equations parameters */
   myparams[1] = l;
+  
+  TFile *f=new TFile("pendulum.root","RECREATE");
+  TH2D *hlorenz2d=new TH2D("hpendulum2d","",100,-25,25,100,-25,25);
    
   ode_system.params = myparams;	/* parameters for GSL functions */
   tmin = 0.0;     /* starting t value */
@@ -92,10 +95,14 @@ int main (void) {
           break;
      }
 	 /* print at t=t_next */
-     printf ("%.5e  %.5e  %.5e \n", t, y[0], y[1]); 
+     // printf ("%.5e  %.5e  %.5e \n", t, y[0], y[1]); 
+     hlorenz2d->Fill(y[0],y[1]);
   } // end for
 
   gsl_odeiv2_driver_free (drv);
+  
+  f->Write();
+  f->Close();
 
   return 0;
 

@@ -2,7 +2,7 @@
 (base) ubuntu@ubuntu2204:problem2$ g++ -o pendulum pendulum.cxx -lgsl -lgslcblas
 (base) ubuntu@ubuntu2204:problem2$ ./pendulum 
 
-This program numerically solves the Lorenz Equations
+This program numerically solves the Pendulum Equations
 
 Input data: 
 Initial values theta = 2.14737 phi = 0 
