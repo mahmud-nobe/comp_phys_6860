@@ -8,6 +8,9 @@ This program solves the E. Lorenz Equations
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_odeiv2.h>
+#include <TROOT.h>
+#include <TFile.h>
+#include <TH3.h> 
   
 // parameters for diff eq
 double g = 9.1;  // gravitational const
