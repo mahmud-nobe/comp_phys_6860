@@ -24,9 +24,8 @@ VecNd Clas:
 Dot Product v1 x v2: 72
 
 
+ vecNd: user defined constructor with dimension
  vecNd: user defined copy constructor called!
- vecNd: user defined copy constructor called!
- vecNd: default destructor called
 Cross Product v1 x v2:
 VecNd Clas:
  Dimension = 3
@@ -46,7 +45,6 @@ Matrix element M1(1,2): 8
 Determinant of M1: -12
 
 Multiplication Done
- matrixNN: default destructor called
 Matrix Multiplication: M1 * M1
 matrixNN Clas:
  dimension = 3
@@ -54,10 +52,9 @@ matrixNN Clas:
  68 92 84
  34 52 84
 
- vecNd: default constructor called
+ vecNd: user defined constructor with dimension
 Multiplication Done
  vecNd: user defined copy constructor called!
- vecNd: default destructor called
 Multiplication: v1 * M1
 VecNd Clas:
  Dimension = 3
@@ -71,22 +68,10 @@ matrixNN Clas:
  1 7
  5 1
 
-Cofactor (1,1):  matrixNN: default destructor called
--34
+Cofactor (1,1): -34
 
 
 Inverse of Matrix 1:
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
- matrixNN: default destructor called
 matrixNN Clas:
  dimension = 3
  3.5 -3.33333 2.16667
