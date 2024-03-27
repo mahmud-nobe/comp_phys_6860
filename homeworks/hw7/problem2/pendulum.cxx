@@ -23,7 +23,7 @@ int dfunc (double t, const double y[], double f[], void *params_ptr)
    // theta" + g/l theta = 0
    // Let phi = theta'
    f[0] = y[1]; // theta' = phi
-   f[1] = y[0] * (-g/l); // phi' = -g/l theta
+   f[1] = sin(y[0]) * (-g/l); // phi' = -g/l theta
    return GSL_SUCCESS;	
 } // end of dfunct
 

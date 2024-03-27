@@ -10,7 +10,8 @@
 void plot(TString fName="pendulum.root")
 {
 	TFile *f = new TFile(fName, "READ");
-	TH3D *h2d = (TH3D*) f->Get("hpendulum2d");
+	TH2D *h2d = (TH2D*) f->Get("hpendulum2d");
 	
+	h2d->SetTitle("Pendulum Histogram; Theta [rad]; Phi [rad]");
 	h2d->DrawCopy();
 }
