@@ -56,7 +56,7 @@ int main (void) {
   myparams[1] = l;
   
   TFile *f=new TFile("pendulum.root","RECREATE");
-  TH2D *hlorenz2d=new TH2D("hpendulum2d","",100,-25,25,100,-25,25);
+  TH2D *hlorenz2d=new TH2D("hpendulum2d","",100,-10,10,100,-10,10);
    
   ode_system.params = myparams;	/* parameters for GSL functions */
   tmin = 0.0;     /* starting t value */
@@ -77,14 +77,14 @@ int main (void) {
   printf("Input data: \n");
   printf("Initial values theta = %g phi = %g \n", y[0], y[1]); 
   printf(" Parameters: g= %g l= %g \n", g, l);
-  printf(" Starting step size (h): %0.5e\n", h);
-  printf(" Time parameters: %f %f %f \n", tmin, tmax, delta_t); 
-  printf(" Absolute  and relative error requested: %0.6e %0.6e \n", 
+  printf(" Starting step size (h): %0.3f\n", h);
+  printf(" Time parameters: %.3f %.3f %.3f \n", tmin, tmax, delta_t); 
+  printf(" Absolute  and relative error requested: %0.3e %0.3e \n", 
          eps_abs, eps_rel);
   printf(" Number of equations (dimension): %d \n\n", dimension);
-  printf("    Time           theta             phi   \n");
+  printf(" Time   theta   phi   \n");
   t = tmin;             /* initialize t */
-  printf ("%.5e  %.5e  %.5e \n", t, y[0], y[1]);	/* initial values */
+  printf ("%.3f  %.3f  %.3f \n", t, y[0], y[1]);	/* initial values */
   /* step to tmax from tmin */
 
   for (t_next = tmin + delta_t; t_next <= tmax; t_next += delta_t)
@@ -94,11 +94,15 @@ int main (void) {
           printf("Error: status = %d \n", status);
           break;
      }
-	 /* print at t=t_next */
-     // printf ("%.5e  %.5e  %.5e \n", t, y[0], y[1]); 
+     /* print at t=t_next */
+     //printf("%.2e \n", std::fmod(t_next,1.00));
+     if (std::fmod(t_next,1.00) < 0.0001){
+     	printf ("%.3f  %.3f  %.3f \n", t, y[0], y[1]); 
+     }
      hlorenz2d->Fill(y[0],y[1]);
   } // end for
-
+  printf("\n");
+  
   gsl_odeiv2_driver_free (drv);
   
   f->Write();
