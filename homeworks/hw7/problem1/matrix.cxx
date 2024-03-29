@@ -34,6 +34,19 @@ int main () {
 	print_matrix(*m1);
 	cout << endl;
 	
+	gsl_matrix *m1_inv = gsl_matrix_alloc(3, 3); // for storing inverse matrix
+	gsl_permutation *p1 = gsl_permutation_alloc(3);
+	
+	// LU decomposition
+	gsl_linalg_LU_decomp(m1, p1, &s); 
+	double det1 = gsl_linalg_LU_det(m1, s);
+	gsl_linalg_LU_invert(m1, p1, m1_inv);
+	
+	cout << "Determinant of Matrix 1: " << det1 << endl;
+	cout << "Inverse of Matrix 1:" << endl;
+	print_matrix(*m1_inv);
+	cout << endl;
+	
 	gsl_matrix *m2 = gsl_matrix_alloc(3, 3);
 	int mat_elements2[] = {1, 2, 7, 4, 6, 8, 5, 6, 1};
 	n = 0;
@@ -50,13 +63,14 @@ int main () {
 	
 	
 	gsl_matrix *m2_inv = gsl_matrix_alloc(3, 3); // for storing inverse matrix
-	gsl_permutation *p = gsl_permutation_alloc(3);
+	gsl_permutation *p2 = gsl_permutation_alloc(3);
 	
 	// LU decomposition
-	gsl_linalg_LU_decomp(m2, p, &s); 
-	gsl_linalg_LU_invert(m2, p, m2_inv);
+	gsl_linalg_LU_decomp(m2, p2, &s); 
+	double det2 = gsl_linalg_LU_det(m2, s);
+	gsl_linalg_LU_invert(m2, p2, m2_inv);
 	
-	
+	cout << "Determinant of Matrix 2: " << det2 << endl;
 	cout << "Inverse of Matrix 2:" << endl;
 	print_matrix(*m2_inv);
 	cout << endl;
