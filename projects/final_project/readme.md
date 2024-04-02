@@ -1,5 +1,11 @@
 ## Final Project
 
+### Group 2 Members: 
+- FNU Syed Faraz Mohd Mehdi
+- Robert Dolan
+- Wooyong Han
+- Mahmud Un Nobe
+  
 ### Relative Resonance Decay:
 
 #### Kinematic information:
@@ -9,6 +15,7 @@ mass of resonance and decay particles according to PDG book. Assume both decay i
 Lab frame: eta=[-0.5,0.5] (uniform), phi=isotropic, sqrt(sNN) = 200 GeV/c
 
 (Lambda(1520) resonance)
+
 
 #### Implement a relativistic resonance decay
 **Monte Carlo Simulation**:
@@ -22,9 +29,15 @@ Lab frame: eta=[-0.5,0.5] (uniform), phi=isotropic, sqrt(sNN) = 200 GeV/c
 i) implement gaussian smearing of uncertainties in momentum (mimic detector resolution)
 ii) Add uncorrelated background
 
+**Hints:**
+- We need a 4 mom. vector (look at TLorentzVector),
+- beneficial to extend this by creating our own track class allowing to store further information like
+particle type
+- A good starting point for an event class we did in Lecture 10
 
-### Group 2 Members: 
-- FNU Syed Faraz Mohd Mehdi
-- Robert Dolan
-- Wooyong Han
-- Mahmud Un Nobe 
+**Preparations:**
+- What is needed and how do you want to store/generate?
+  - Track class, Event class, containers/trees ... ?
+- Prepare a short outline of what functionalities the classes need and
+- a quick flow chart of the project itself
+
